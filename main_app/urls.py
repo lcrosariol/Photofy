@@ -17,6 +17,7 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
+
     path('', views.home, name='home'),
     #home page
     path('about/', views.about, name='about'),
@@ -58,5 +59,6 @@ urlpatterns = [
 
     path('profile/', views.profile, name='profile'),
     #user profile page
+
 
 ]
