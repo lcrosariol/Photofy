@@ -28,5 +28,3 @@ class Photo(models.Model):
     url = models.CharField(max_length=250)
     user = models.ForeignKey(User, on_delete=models.CASCADE) #on_delete refers to User model
     
-    def __str__(self):
-        return f"Favorite Photo: {self.cat.id} @ {self.url}"
