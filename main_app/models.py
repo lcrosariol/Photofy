@@ -30,3 +30,4 @@ class Photo(models.Model):
     
     def __str__(self):
         return f"Favorite Photo: {self.cat.id} @ {self.url}"
+
