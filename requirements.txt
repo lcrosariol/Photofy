@@ -1,7 +1,9 @@
 asgiref==3.5.2
 boto3==1.23.5
 botocore==1.26.5
+dj-database-url==0.5.0
 Django==4.0.4
+django-on-heroku==1.1.2
 jmespath==1.0.0
 psycopg2-binary==2.9.3
 python-dateutil==2.8.2
@@ -9,3 +11,4 @@ s3transfer==0.5.2
 six==1.16.0
 sqlparse==0.4.2
 urllib3==1.26.9
+whitenoise==6.1.0
