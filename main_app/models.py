@@ -64,7 +64,7 @@ class Transactions(models.Model):
     booking = models.ForeignKey(Bookings, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f"{self.payment_method} Payment on {self.date}"
+        return f"{self.get_payment_method_display()} Payment on {self.date}"
     
     
 class Customer(models.Model):
