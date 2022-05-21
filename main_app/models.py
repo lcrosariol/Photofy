@@ -9,6 +9,12 @@ EQUIPMENT = (
   ('O', 'Other')
 )
 
+PAYMENT_TYPE = (
+    ('C', 'Card'),
+    ('O', 'Online'),
+    ('Z', 'Zelle'),
+    ('X', 'Cash'),
+)
 
 # Create your models here.
 class Equipment(models.Model):
@@ -26,4 +32,46 @@ class Equipment(models.Model):
 
 class Photo(models.Model):
     url = models.CharField(max_length=250)
+    description = models.TextField(blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE) #on_delete refers to User model
+    
+    def __str__(self):
+        return f"{self.description}"
+    
+
+class Bookings(models.Model):
+    date = models.DateField('Booking Date')
+    location = models.CharField(max_length=200)
+    paid = models.boolField('Paid')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"{self.location} on {self.date}"
+    
+    class Meta:
+        ordering = ['-date']
+        
+
+class Transactions(models.Model):
+    payment_method = models.CharField(
+        'Payment Method',
+        max_length=1,
+        choices=PAYMENT_TYPE,
+        default=PAYMENT_TYPE[0][0]
+        )
+    amount = models.floatField('Amount')
+    date = models.DateField('Transaction Date')
+    booking = models.ForeignKey(Bookings, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"{self.payment_method} Payment on {self.date}"
+    
+    
+class Customer(models.Model):
+    name = models.CharField(max_length=30)
+    phone_number = models.CharField(max_length=15)
+    comment = models.CharField(max_length=200)
+    booking = models.ForeignKey(Bookings, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"{self.name}"
