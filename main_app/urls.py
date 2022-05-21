@@ -59,5 +59,6 @@ urlpatterns = [
 
     path('profile/', views.profile, name='profile'),
     #user profile page
+    path('accounts/signup/', views.signup, name='signup'),
 
 ]
