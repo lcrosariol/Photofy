@@ -27,4 +27,3 @@ class Equipment(models.Model):
 class Photo(models.Model):
     url = models.CharField(max_length=250)
     user = models.ForeignKey(User, on_delete=models.CASCADE) #on_delete refers to User model
-    
