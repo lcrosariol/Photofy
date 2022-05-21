@@ -42,7 +42,7 @@ class Photo(models.Model):
 class Bookings(models.Model):
     date = models.DateField('Booking Date')
     location = models.CharField(max_length=200)
-    paid = models.boolField('Paid')
+    paid = models.BooleanField('Paid')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
@@ -59,7 +59,7 @@ class Transactions(models.Model):
         choices=PAYMENT_TYPE,
         default=PAYMENT_TYPE[0][0]
         )
-    amount = models.floatField('Amount')
+    amount = models.FloatField('Amount')
     date = models.DateField('Transaction Date')
     booking = models.ForeignKey(Bookings, on_delete=models.CASCADE)
     
