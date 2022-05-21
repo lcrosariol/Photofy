@@ -17,6 +17,7 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
+
     path('', views.home, name='home'),
     #home page
     path('about/', views.about, name='about'),
@@ -43,8 +44,12 @@ urlpatterns = [
     #equiptment page
     path('portfolio/', views.portfolio, name='portfolio'),
     #portfolio page
+
     path('portfolio/<int:photographer_id>/add_photo/', views.add_photo, name='add_photo'),
     #add photographer_id to photo and function will tell it to add to the portfolio, and redirect to portfolio
+
+
+
     
 
     path('transactions/', views.transactions, name='transactions'),
@@ -59,6 +64,10 @@ urlpatterns = [
 
     path('profile/', views.profile, name='profile'),
     #user profile page
+
     path('accounts/signup/', views.signup, name='signup'),
+
+
+
 
 ]
