@@ -40,7 +40,7 @@ urlpatterns = [
 
 
 
-    path('equiptment/', views.equiptment, name='equiptment'),
+    path('equiptment/', views.equipment, name='equipment'),
     #equiptment page
     path('portfolio/', views.portfolio, name='portfolio'),
     #portfolio page
