@@ -38,12 +38,11 @@ urlpatterns = [
     # #delete a customer
 
 
-
-
     # path('equiptment/', views.equiptment, name='equiptment'),
     # #equiptment page
     # path('portfolio/', views.portfolio, name='portfolio'),
     # #portfolio page
+
 
     # path('portfolio/<int:photographer_id>/add_photo/', views.add_photo, name='add_photo'),
     # #add photographer_id to photo and function will tell it to add to the portfolio, and redirect to portfolio
