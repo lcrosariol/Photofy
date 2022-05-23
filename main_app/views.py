@@ -90,7 +90,6 @@ def equipment(request):
   return render(request, 'equipment.html', {'equipment': equipment})
 
 
-
 @login_required
 def portfolio(request):
   """
@@ -102,14 +101,25 @@ def portfolio(request):
 
 
 @login_required
+def booking(request, booking_id):
+  """
+  single booking view
+  http://localhost/8000/portfolio/
+  """
+  booking = Booking.objects.get(id=booking_id)
+  return render(request, 'bookings/booking_detail.html', {'booking': booking})
+
+
+@login_required
 def transactions(request):
   """
   transactions view
   http://localhost/8000/transactions/
   """
-  transactions = Transaction.objects.filter(user=request.user)
+  bookings = Booking.objects.filter(user=request.user)
+  bookings_list = list(bookings)
+  transactions = Transaction.objects.filter(booking__in = bookings_list )
   return render(request, 'transactions.html', {'transactions': transactions})
-
 
 
 @login_required
@@ -119,43 +129,6 @@ def profile(request):
   http://localhost/8000/profile/
   """
   return render(request, 'profile.html')
-
-
-@login_required
-def add_photo(request, photographer_id):
-  photo_file = request.FILES.get('photo-file', None)
-  if photo_file:
-    s3 = boto3.client('s3')
-    # need a unique "key" for s3 (filename)
-    key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-    try:
-      bucket = os.environ['S3_BUCKET']
-      s3.upload_fileobj(photo_file, bucket, key)
-      url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-      Photo.objects.create(url=url, photographer_id=photographer_id)
-    except:
-      print('An error occurred uploading file to S3')
-  return redirect('detail', photographer_id=photographer_id)
-
-
-def signup(request):
-  error_message = ''
-  if request.method == 'POST':
-    # This is how to create a 'user' form object
-    # that includes the data from the browser
-    form = UserCreationForm(request.POST)
-    if form.is_valid():
-      # This will add the user to the database
-      user = form.save()
-      # This is how we log a user in via code
-      login(request, user)
-      return redirect('/bookings')
-    else:
-      error_message = 'Invalid sign up - try again'
-  # A bad POST or a GET request, so render signup.html with an empty form
-  form = UserCreationForm()
-  context = {'form': form, 'error_message': error_message}
-  return render(request, 'registration/signup.html', context)
 
   
 class TransactionCreate(LoginRequiredMixin, CreateView):
