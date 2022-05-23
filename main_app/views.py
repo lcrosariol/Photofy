@@ -3,6 +3,7 @@ from distutils.log import Log
 import os
 import uuid
 import boto3
+from datetime import date
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
@@ -76,8 +77,11 @@ def bookings(request):
   about view
   http://localhost/8000/bookings/
   """
+  today = str(date.today())
   bookings = Booking.objects.filter(user=request.user)
-  return render(request, 'bookings.html', {'bookings': bookings})
+  print(today)
+  print(bookings)
+  return render(request, 'bookings.html', {'bookings': bookings, 'date': today})
 
 
 @login_required
