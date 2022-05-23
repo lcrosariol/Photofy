@@ -18,12 +18,12 @@ from . import views
 
 urlpatterns = [
 
-    # path('', views.home, name='home'),
-    # #home page
-    # path('about/', views.about, name='about'),
-    # #about page
-    # path('bookings/', views.bookings, name='bookings'),
-    # #bookings page
+    path('', views.home, name='home'),
+    #home page
+    path('about/', views.about, name='about'),
+    #about page
+    path('bookings/', views.bookings, name='bookings'),
+    #bookings page
 
 
     # path('customer/', views.CustomerList.as_view(), name='customer_index'),
@@ -38,21 +38,21 @@ urlpatterns = [
     # #delete a customer
 
 
-    # path('equiptment/', views.equiptment, name='equiptment'),
-    # #equiptment page
-    # path('portfolio/', views.portfolio, name='portfolio'),
-    # #portfolio page
+    path('equipment/', views.equipment, name='equipment'),
+    #equiptment page
+    path('portfolio/', views.portfolio, name='portfolio'),
+    #portfolio page
 
 
-    # path('portfolio/<int:photographer_id>/add_photo/', views.add_photo, name='add_photo'),
-    # #add photographer_id to photo and function will tell it to add to the portfolio, and redirect to portfolio
+    path('portfolio/<int:photographer_id>/add_photo/', views.add_photo, name='add_photo'),
+    #add photographer_id to photo and function will tell it to add to the portfolio, and redirect to portfolio
 
 
 
     
 
-    # path('transactions/', views.transactions, name='transactions'),
-    # #transactions page
+    path('transactions/', views.transactions, name='transactions'),
+    #transactions page
     # path('transaction/<int:transaction_id>', views.transaction_detail, name='detail'),
     # path('transaction/create/', views.TransactionCreate.as_view(), name='transaction_create'),
     # path('transaction/<int:pk>/update/', views.TransactionUpdate.as_view(), name='transaction_update'),

@@ -6,77 +6,13 @@ import boto3
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Equipment, Bookings, Photo, Transactions
+from .models import Equipment, Booking, Photo, Transaction
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
-
-def home(request):
-    """
-    home view
-    http://localhost:8000/
-    """
-    return render(request, 'home.html')
-
-def about(request):
-  """
-  about view
-  http://localhost/8000/about/
-  """
-  return render(request, 'about.html')
-
-@login_required
-def bookings(request):
-  """
-  about view
-  http://localhost/8000/bookings/
-  """
-  return render(request, 'bookings.html')
-
-@login_required
-def equipment(request):
-  """
-  about view
-  http://localhost/8000/equipment/
-  """
-  return render(request, 'equipment.html')
-
-@login_required
-def portfolio(request):
-  """
-  about view
-  http://localhost/8000/portfolio/
-  """
-  return render(request, 'portfolio.html')
-
-@login_required
-def transactions(request):
-  """
-  transactions view
-  http://localhost/8000/transactions/
-  """
-  return render(request, 'transactions.html')
-
-
-##do we want to create a transaction folder and add these to it?
-@login_required
-def transaction_detail(request):
-  """
-  transaction detail view
-  http://localhost/8000/transactions/transactions_id
-  """
-  return render(request, 'transactions/detail.html')
-
-@login_required
-def profile(request):
-  """
-  about view
-  http://localhost/8000/profile/
-  """
-  return render(request, 'profile.html')
 
 @login_required
 def add_photo(request, photographer_id):
@@ -93,6 +29,7 @@ def add_photo(request, photographer_id):
     except:
       print('An error occurred uploading file to S3')
   return redirect('detail', photographer_id=photographer_id)
+
 
 
 def signup(request):
@@ -113,15 +50,87 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+
+@login_required
+def home(request):
+    """
+    home view
+    http://localhost:8000/
+    """
+    return render(request, 'home.html')
+
+
+@login_required
+def about(request):
+  """
+  about view
+  http://localhost/8000/about/
+  """
+  return render(request, 'about.html')
+
+
+@login_required
+def bookings(request):
+  """
+  about view
+  http://localhost/8000/bookings/
+  """
+  bookings = Booking.objects.filter(user=request.user)
+  return render(request, 'bookings.html', {'bookings': bookings})
+
+
+@login_required
+def equipment(request):
+  """
+  about view
+  http://localhost/8000/equipment/
+  """
+  equipment = Equipment.objects.filter(user=request.user)
+  return render(request, 'equipment.html', {'equipment': equipment})
+
+
+
+@login_required
+def portfolio(request):
+  """
+  about view
+  http://localhost/8000/portfolio/
+  """
+  photos = Photo.objects.filter(user=request.user)
+  return render(request, 'portfolio.html', {'photos': photos})
+
+
+@login_required
+def transactions(request):
+  """
+  transactions view
+  http://localhost/8000/transactions/
+  """
+  transactions = Transaction.objects.filter(user=request.user)
+  return render(request, 'transactions.html', {'transactions': transactions})
+
+
+
+@login_required
+def profile(request):
+  """
+  about view
+  http://localhost/8000/profile/
+  """
+  return render(request, 'profile.html')
+
   
 class TransactionCreate(LoginRequiredMixin, CreateView):
-  model = Transactions
+  model = Transaction
   fields = '__all__'
 
+
 class TransactionUpdate(LoginRequiredMixin, UpdateView):
-  model = Transactions
+  model = Transaction
   fields = ['comment', 'booking']
 
+
 class TransactionDelete(LoginRequiredMixin, DeleteView):
-  model = Transactions
+  model = Transaction
   success_url = '/transactions/'
