@@ -19,11 +19,13 @@ from . import views
 urlpatterns = [
 
     path('', views.home, name='home'),
+
     # #home page
     path('about/', views.about, name='about'),
     # #about page
     path('bookings/', views.bookings, name='bookings'),
     # #bookings page
+
 
 
     path('customer/', views.CustomerList.as_view(), name='customer_index'),
@@ -53,10 +55,12 @@ urlpatterns = [
 
     path('transactions/', views.transactions, name='transactions'),
     #transactions page
+
     path('transaction/<int:transaction_id>', views.transaction_detail, name='detail'),
     path('transaction/create/', views.TransactionCreate.as_view(), name='transaction_create'),
     path('transaction/<int:pk>/update/', views.TransactionUpdate.as_view(), name='transaction_update'),
     path('transaction/<int:pk>/delete/', views.TransactionDelete.as_view(), name='transaction_delete'),
+
 
 
 
