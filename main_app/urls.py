@@ -24,8 +24,11 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     # #about page
     path('bookings/', views.bookings, name='bookings'),
+    
     # #bookings page
+    path('bookings/<int:booking_id>', views.booking, name='booking'),
 
+    
     path('equipment/', views.equipment, name='equipment'),
     #equiptment page
     path('portfolio/', views.portfolio, name='portfolio'),
