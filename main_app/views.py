@@ -81,7 +81,7 @@ def bookings(request):
   bookings = Booking.objects.filter(user=request.user)
   print(today)
   print(bookings)
-  return render(request, 'bookings.html', {'bookings': bookings, 'date': today})
+  return render(request, 'bookings/bookings.html', {'bookings': bookings, 'date': today})
 
 
 @login_required
