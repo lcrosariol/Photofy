@@ -35,7 +35,7 @@ class Profile(User):
     
 
 class Photo(models.Model):
-    url = models.CharField(max_length=250)
+    url = models.URLField(max_length=350)
     description = models.TextField(blank=True)
     # on_delete refers to User model
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -48,7 +48,7 @@ class Booking(models.Model):
     date = models.DateField('Booking Date')
     location = models.CharField(max_length=200)
     paid = models.BooleanField('Paid')
-    name = models.CharField(max_length=30)
+    customer_name = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=15)
     comment = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -67,7 +67,7 @@ class Transaction(models.Model):
         choices=PAYMENT_TYPE,
         default=PAYMENT_TYPE[0][0]
     )
-    amount = models.FloatField('Amount')
+    amount = models.DecimalField('Amount',max_digits=12, decimal_places=2, default=0.0)
     date = models.DateField('Transaction Date')
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
 

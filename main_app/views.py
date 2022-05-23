@@ -157,26 +157,6 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-class CustomerList(LoginRequiredMixin, ListView):
-  model = Customer
-
-class CustomerDetail(LoginRequiredMixin, DetailView):
-  model = Customer
-  
-class CustomerCreate(LoginRequiredMixin, CreateView):
-  model = Customer
-  fields = '__all__'
-
-class CustomerUpdate(LoginRequiredMixin, UpdateView):
-  model = Customer
-  fields = ['comment', 'booking']
-
-class CustomerDelete(LoginRequiredMixin, DeleteView):
-  model = Customer
-  success_url = '/customers/'
-
-
-
   
 class TransactionCreate(LoginRequiredMixin, CreateView):
   model = Transaction
