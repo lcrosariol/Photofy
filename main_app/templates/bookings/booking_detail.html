@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Bookings List</h1>
+<h1>Booking Detail</h1>
 
-{% for bookings inn booking_list %}
   <a href="{% url 'booking_detail' booking.id %}">
     <div class="card">
         <div class="card-content">
@@ -17,6 +16,6 @@
         </div>
     </div>
   </a>
-{% endfor %}
+
 
 {% endblock %}
