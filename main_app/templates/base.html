@@ -18,7 +18,17 @@
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Photofy</a></li>
         </ul>
         <ul class="right">
-          <li><a href="/about">About</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'bookings' %}">Bookings</a></li>
+            <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li><a href="{% url 'equipment' %}">Equipment</a></li>
+            <li><a href="{% url 'transactions' %}">All Transactions</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
         </ul>
       </div>
     </nav>
