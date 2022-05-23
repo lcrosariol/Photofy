@@ -86,7 +86,9 @@ def equipment(request):
   about view
   http://localhost/8000/equipment/
   """
-  return render(request, 'equipment.html')
+  equipment = Equipment.objects.filter(user=request.user)
+  return render(request, 'equipment.html', {'equipment': equipment})
+
 
 
 @login_required

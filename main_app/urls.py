@@ -38,8 +38,8 @@ urlpatterns = [
     # #delete a customer
 
 
-    # path('equiptment/', views.equiptment, name='equiptment'),
-    # #equiptment page
+    path('equipment/', views.equipment, name='equipment'),
+    #equiptment page
     # path('portfolio/', views.portfolio, name='portfolio'),
     # #portfolio page
 

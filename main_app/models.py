@@ -25,6 +25,7 @@ class Equipment(models.Model):
     default=EQUIPMENT[0][0]
   )
     model = models.CharField(max_length=40)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
         return f'{self.type} {self.model}'
