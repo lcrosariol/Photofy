@@ -19,23 +19,25 @@ from . import views
 urlpatterns = [
 
     path('', views.home, name='home'),
-    #home page
+
+    # #home page
     path('about/', views.about, name='about'),
-    #about page
+    # #about page
     path('bookings/', views.bookings, name='bookings'),
-    #bookings page
+    # #bookings page
 
 
-    # path('customer/', views.CustomerList.as_view(), name='customer_index'),
-    # # #customer page
-    # path('customer/<int:pk>/', views.CustomerDetail.as_view(), name='customer_detail'),
-    # #view customer detail
-    # path('customer/create/', views.CustomerCreate.as_view(), name='customer_create'),
-    # #create a new customer
-    # path('customer/<int:pk>/update/', views.CustomerUpdate.as_view(), name='customer_update'),
-    # #update a customer
-    # path('customer/<int:pk>/delete/', views.CustomerDelete.as_view(), name='customer_delete'),
-    # #delete a customer
+
+    path('customer/', views.CustomerList.as_view(), name='customer_index'),
+    # #customer page
+    path('customer/<int:pk>/', views.CustomerDetail.as_view(), name='customer_detail'),
+    #view customer detail
+    path('customer/create/', views.CustomerCreate.as_view(), name='customer_create'),
+    #create a new customer
+    path('customer/<int:pk>/update/', views.CustomerUpdate.as_view(), name='customer_update'),
+    #update a customer
+    path('customer/<int:pk>/delete/', views.CustomerDelete.as_view(), name='customer_delete'),
+    #delete a customer
 
 
     path('equipment/', views.equipment, name='equipment'),
@@ -53,18 +55,20 @@ urlpatterns = [
 
     path('transactions/', views.transactions, name='transactions'),
     #transactions page
-    # path('transaction/<int:transaction_id>', views.transaction_detail, name='detail'),
-    # path('transaction/create/', views.TransactionCreate.as_view(), name='transaction_create'),
-    # path('transaction/<int:pk>/update/', views.TransactionUpdate.as_view(), name='transaction_update'),
-    # path('transaction/<int:pk>/delete/', views.transactionDelete.as_view(), name='transaction_delete'),
+
+    path('transaction/<int:transaction_id>', views.transaction_detail, name='detail'),
+    path('transaction/create/', views.TransactionCreate.as_view(), name='transaction_create'),
+    path('transaction/<int:pk>/update/', views.TransactionUpdate.as_view(), name='transaction_update'),
+    path('transaction/<int:pk>/delete/', views.TransactionDelete.as_view(), name='transaction_delete'),
 
 
 
 
-    # path('profile/', views.profile, name='profile'),
-    # #user profile page
 
-    # path('accounts/signup/', views.signup, name='signup'),
+    path('profile/', views.profile, name='profile'),
+    #user profile page
+
+    path('signup/', views.signup, name='signup'),
 
 
 
