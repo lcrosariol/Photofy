@@ -97,7 +97,9 @@ def portfolio(request):
   about view
   http://localhost/8000/portfolio/
   """
-  return render(request, 'portfolio.html')
+  photos = Photo.objects.filter(user=request.user)
+  return render(request, 'portfolio.html', {'photos': photos})
+
 
 @login_required
 def transactions(request):
@@ -105,17 +107,10 @@ def transactions(request):
   transactions view
   http://localhost/8000/transactions/
   """
-  return render(request, 'transactions.html')
+  transactions = Transaction.objects.filter(user=request.user)
+  return render(request, 'transactions.html', {'transactions': transactions})
 
 
-##do we want to create a transaction folder and add these to it?
-@login_required
-def transaction_detail(request):
-  """
-  transaction detail view
-  http://localhost/8000/transactions/transactions_id
-  """
-  return render(request, 'transactions/detail.html')
 
 @login_required
 def profile(request):
