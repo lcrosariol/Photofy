@@ -2,10 +2,8 @@
 {% block content %}
 
 <h1>Bookings</h1>
-
-<h3>Upcoming</h3>
-
-<h3>Past</h3>
-
+    {% for booking in bookings  %}
+        <!-- <p><a href="{% url 'booking_detail' %}" >Date: {{ booking.date }}</a></p> -->
+    {% endfor %}
 
 {% endblock %}
