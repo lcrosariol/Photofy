@@ -43,6 +43,9 @@ class Bookings(models.Model):
     date = models.DateField('Booking Date')
     location = models.CharField(max_length=200)
     paid = models.BooleanField('Paid')
+    name = models.CharField(max_length=30)
+    phone_number = models.CharField(max_length=15)
+    comment = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
@@ -63,15 +66,6 @@ class Transactions(models.Model):
     date = models.DateField('Transaction Date')
     booking = models.ForeignKey(Bookings, on_delete=models.CASCADE)
     
+    
     def __str__(self):
         return f"{self.get_payment_method_display()} Payment on {self.date}"
-    
-    
-class Customer(models.Model):
-    name = models.CharField(max_length=30)
-    phone_number = models.CharField(max_length=15)
-    comment = models.CharField(max_length=200)
-    booking = models.ForeignKey(Bookings, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return f"{self.name}"
