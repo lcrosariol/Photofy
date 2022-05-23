@@ -39,7 +39,7 @@ class Photo(models.Model):
         return f"{self.description}"
     
 
-class Bookings(models.Model):
+class Booking(models.Model):
     date = models.DateField('Booking Date')
     location = models.CharField(max_length=200)
     paid = models.BooleanField('Paid')
@@ -55,7 +55,7 @@ class Bookings(models.Model):
         ordering = ['-date']
         
 
-class Transactions(models.Model):
+class Transaction(models.Model):
     payment_method = models.CharField(
         'Payment Method',
         max_length=1,
@@ -64,7 +64,7 @@ class Transactions(models.Model):
         )
     amount = models.FloatField('Amount')
     date = models.DateField('Transaction Date')
-    booking = models.ForeignKey(Bookings, on_delete=models.CASCADE)
+    booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
     
     
     def __str__(self):

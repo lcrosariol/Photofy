@@ -1,8 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Equipment, Bookings, Photo, Transactions
+from .models import Equipment, Booking, Photo, Transaction
 
 admin.site.register(Equipment)
-admin.site.register(Bookings)
-admin.site.register(Transactions)
+admin.site.register(Booking)
+admin.site.register(Transaction)

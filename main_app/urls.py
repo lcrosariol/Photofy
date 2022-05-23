@@ -18,12 +18,12 @@ from . import views
 
 urlpatterns = [
 
-    # path('', views.home, name='home'),
-    # #home page
-    # path('about/', views.about, name='about'),
-    # #about page
-    # path('bookings/', views.bookings, name='bookings'),
-    # #bookings page
+    path('', views.home, name='home'),
+    #home page
+    path('about/', views.about, name='about'),
+    #about page
+    path('bookings/', views.bookings, name='bookings'),
+    #bookings page
 
 
     # path('customer/', views.CustomerList.as_view(), name='customer_index'),
