@@ -71,7 +71,7 @@ def about(request):
   return render(request, 'about.html')
 
 
-
+@login_required
 def bookings(request):
   """
   about view
@@ -94,6 +94,7 @@ def equipment(request):
   return render(request, 'equipment.html', {'profile': profile})
 
 
+@login_required
 def portfolio(request):
   """
   about view
@@ -103,7 +104,7 @@ def portfolio(request):
   return render(request, 'portfolio.html', {'photos': photos})
 
 
-
+@login_required
 def booking(request, booking_id):
   """
   single booking view
@@ -113,7 +114,7 @@ def booking(request, booking_id):
   return render(request, 'bookings/booking_detail.html', {'booking': booking})
 
 
-
+@login_required
 def transactions(request):
   """
   transactions view
@@ -125,7 +126,7 @@ def transactions(request):
   return render(request, 'transactions.html', {'transactions': transactions})
 
 
-
+@login_required
 def profile(request):
   """
   about view
