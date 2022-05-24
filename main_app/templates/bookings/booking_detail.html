@@ -13,7 +13,8 @@
             <p>Comments: {{ booking.comment }}</p>
             <p>Transaction: </p>
         </div>
-        
+        <a href="{% url 'booking_update' booking.id %}" >Update</a>
+        <a href="{% url 'booking_delete' booking.id %}" >Delete</a>
     </div>
 </a>
 
