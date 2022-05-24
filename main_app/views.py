@@ -7,7 +7,7 @@ from datetime import date
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Equipment, Booking, Photo, Transaction
+from .models import Equipment, Booking, Photo, Transaction, Profile
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -71,7 +71,7 @@ def about(request):
   return render(request, 'about.html')
 
 
-@login_required
+
 def bookings(request):
   """
   about view
@@ -81,7 +81,7 @@ def bookings(request):
   bookings = Booking.objects.filter(user=request.user)
   print(today)
   print(bookings)
-  return render(request, 'bookings/bookings.html', {'bookings': bookings, 'date': today})
+  return render(request, 'bookings/index.html', {'bookings': bookings, 'date': today})
 
 
 @login_required
@@ -90,11 +90,10 @@ def equipment(request):
   about view
   http://localhost/8000/equipment/
   """
-  equipment = Equipment.objects.filter(user=request.user)
-  return render(request, 'equipment.html', {'equipment': equipment})
+  profile = Profile.objects.get(user=request.user)
+  return render(request, 'equipment.html', {'profile': profile})
 
 
-@login_required
 def portfolio(request):
   """
   about view
@@ -104,7 +103,7 @@ def portfolio(request):
   return render(request, 'portfolio.html', {'photos': photos})
 
 
-@login_required
+
 def booking(request, booking_id):
   """
   single booking view
@@ -114,7 +113,7 @@ def booking(request, booking_id):
   return render(request, 'bookings/booking_detail.html', {'booking': booking})
 
 
-@login_required
+
 def transactions(request):
   """
   transactions view
@@ -126,7 +125,7 @@ def transactions(request):
   return render(request, 'transactions.html', {'transactions': transactions})
 
 
-@login_required
+
 def profile(request):
   """
   about view
@@ -148,3 +147,22 @@ class TransactionUpdate(LoginRequiredMixin, UpdateView):
 class TransactionDelete(LoginRequiredMixin, DeleteView):
   model = Transaction
   success_url = '/transactions/'
+  
+  
+class EquipmentList(LoginRequiredMixin, ListView):
+  model = Equipment
+
+
+class EquipmentCreate(LoginRequiredMixin, CreateView):
+  model = Equipment
+  fields = '__all__'
+
+
+class EquipmentUpdate(LoginRequiredMixin, UpdateView):
+  model = Equipment
+  fields = ['model']
+
+
+class EquipmentDelete(LoginRequiredMixin, DeleteView):
+  model = Equipment
+  success_url = '/equipment/'
