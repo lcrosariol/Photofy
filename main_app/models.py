@@ -29,8 +29,8 @@ class Equipment(models.Model):
     def __str__(self):
         return f'{self.type} {self.model}'
         
-    def get_absolute_url(self):
-        return reverse('detail', kwargs={'pk': self.id})
+    # def get_absolute_url(self):
+    #     return reverse('detail', kwargs={'pk': self.id})
 
 class Profile(User):
     equipment = models.ManyToManyField(Equipment)

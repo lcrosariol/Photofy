@@ -28,10 +28,10 @@ def user_index(request):
 def user_detail(request):
   try:
     user = User.objects.get(id=user_id)
-    equipment_user_doesnt_have = Equipment.objects.exclude(id__in = user.equipment.all().values_list('id'))
+    equipments_user_doesnt_have = Equipment.objects.exclude(id__in = user.equipments.all().values_list('id'))
     return render(request, 'user/detail',{
       'user': user,
-      'equipment': equipment_user_doesnt_have,
+      'equipments': equipments_user_doesnt_have,
     })
   except User.DoesNotExist:
     return render(request, 'notfound.html')
@@ -119,12 +119,12 @@ def assoc_equipment(request, user_id, equipment_id):
   """
   # equipment = Equipment.objects.filter(user=request.user)
   # return render(request, 'equipment.html', {'equipment': equipment})
-  User.objects.get(id=user.id).equipment.add(equipment_id)
+  User.objects.get(id=user.id).equipments.add(equipment_id)
   return redirect('equipment', equipment_id=equipment_id)
 
 
 def unassoc_equipment(request, user_id, equipment_id):
-  User.objects.get(id=equipment_id).equipment.remove(equipment_id)
+  User.objects.get(id=equipment_id).equipments.remove(equipment_id)
   return redirect('equipment', user_id=user_id)
 
 class EquipmentList(ListView):
@@ -142,12 +142,12 @@ class EquipmentCreate(CreateView):
 
 class EquipmentUpdate(UpdateView):
   model = Equipment
-  fields = ['name', 'color']
+  fields = ['name', 'type']
 
 
 class EquipmentDelete(DeleteView):
   model = Equipment
-  success_url = '/equipment_detail/'
+  success_url = '/'
 
 @login_required
 def portfolio(request):
