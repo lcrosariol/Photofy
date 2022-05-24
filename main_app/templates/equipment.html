@@ -3,4 +3,7 @@
 
 <h1>Gear</h1>
 
+    {% for equipment in profile.equipments.all %}
+        <p> {{equipment.model}}</p>
+    {% endfor %}
 {% endblock %}

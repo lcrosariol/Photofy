@@ -28,7 +28,6 @@ urlpatterns = [
     # #bookings page
     path('bookings/<int:booking_id>', views.booking, name='booking'),
 
-    
     path('equipment/', views.equipment, name='equipment'),
     #equiptment page
     path('portfolio/', views.portfolio, name='portfolio'),
