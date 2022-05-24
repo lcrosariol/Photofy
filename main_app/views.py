@@ -91,6 +91,7 @@ def equipment(request):
   http://localhost/8000/equipment/
   """
   profile = Profile.objects.get(user=request.user)
+  print(profile)
   return render(request, 'equipment.html', {'profile': profile})
 
 
@@ -133,6 +134,16 @@ def profile(request):
   """
   return render(request, 'profile.html')
 
+
+def assoc_equipment(request, equipment_id):
+  Profile.objects.get(id=request.user.id).equipments.add(equipment_id)
+  print('THIS', request.user.id, equipment_id)
+  return redirect('equipment')
+
+def unassoc_equipment(request, profile_id, equipment_id):
+  Profile.objects.get(user_id=profile_id).equipment.remove(equipment_id)
+  return redirect('equipment', profile_id=profile_id)
+
   
 class TransactionCreate(LoginRequiredMixin, CreateView):
   model = Transaction
@@ -141,7 +152,8 @@ class TransactionCreate(LoginRequiredMixin, CreateView):
 
 class TransactionUpdate(LoginRequiredMixin, UpdateView):
   model = Transaction
-  fields = ['comment', 'booking']
+  fields = ['amount', 'paid']
+  success_url = '/transactions/'
 
 
 class TransactionDelete(LoginRequiredMixin, DeleteView):

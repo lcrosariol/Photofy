@@ -4,16 +4,16 @@
 <h1>Gear</h1>
 <div class="col s6">
     <h3>Available Equipment</h3>
-    {% if equipment.count %}
       {% for equipment in profile.equipments.all %}
         <div class="card">
           <div class="card-content">
             <span class="card-title">
               <div>{{ equipment.type }} {{ equipment.model }}</div>
+
             </span>
           </div>
           <div class="card-action">
-            <form action="{% url 'assoc_equipment' profile.id equipment.id %}" method="post">
+            <form action="{% url 'assoc_equipment' equipment.id %}" method="post">
               {% csrf_token %}
               <button type="submit" class="btn">Add</button>
             </form>
@@ -21,9 +21,11 @@
         </div>
       {% endfor %}
   </div>
-  {% endif %}
+
 
     {% for equipment in profile.equipments.all %}
         <p> {{equipment.model}}</p>
     {% endfor %}
+
+    <a href="{% url 'equipment_create' %}">Add Equipment</a>
 {% endblock %}
