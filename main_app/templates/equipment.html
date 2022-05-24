@@ -20,10 +20,8 @@
           </div>
         </div>
       {% endfor %}
-    {% else %}
-      <h5>{{user.id}} Already Has All Gear Available</h5>
-    {% endif %}
   </div>
+  {% endif %}
 
     {% for equipment in profile.equipments.all %}
         <p> {{equipment.model}}</p>
