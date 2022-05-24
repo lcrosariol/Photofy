@@ -14,9 +14,36 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
+def home(request):
+  return render(request, 'home.html')
+
+def about(request):
+  user = User.objects.all()
+  return render(request, 'about.html')
+  
+def user_index(request):
+  user = User.objects.all()
+  return render(request, 'user/index.html', { 'user': user })
+
+def user_detail(request):
+  try:
+    user = User.objects.get(id=user_id)
+    equipment_user_doesnt_have = Equipment.objects.exclude(id__in = user.equipment.all().values_list('id'))
+    return render(request, 'user/detail',{
+      'user': user,
+      'equipment': equipment_user_doesnt_have,
+    })
+  except User.DoesNotExist:
+    return render(request, 'notfound.html')
+
+def user_index(request):
+  user = User.objects.all()
+  return render(request, 'user/index.html', { 'user': user })
+
+
 
 @login_required
-def add_photo(request, photographer_id):
+def add_photo(request, user_id):
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:
     s3 = boto3.client('s3')
@@ -26,10 +53,10 @@ def add_photo(request, photographer_id):
       bucket = os.environ['S3_BUCKET']
       s3.upload_fileobj(photo_file, bucket, key)
       url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-      Photo.objects.create(url=url, photographer_id=photographer_id)
+      Photo.objects.create(url=url, user_id=user_id)
     except:
       print('An error occurred uploading file to S3')
-  return redirect('detail', photographer_id=photographer_id)
+  return redirect('detail', user_id=user_id)
 
 
 
@@ -81,18 +108,46 @@ def bookings(request):
   bookings = Booking.objects.filter(user=request.user)
   print(today)
   print(bookings)
-  return render(request, 'bookings/bookings.html', {'bookings': bookings, 'date': today})
+  return render(request, 'bookings/index.html', {'bookings': bookings, 'date': today})
 
 
-@login_required
-def equipment(request):
+
+def assoc_equipment(request, user_id, equipment_id):
   """
   about view
   http://localhost/8000/equipment/
   """
-  equipment = Equipment.objects.filter(user=request.user)
-  return render(request, 'equipment.html', {'equipment': equipment})
+  # equipment = Equipment.objects.filter(user=request.user)
+  # return render(request, 'equipment.html', {'equipment': equipment})
+  User.objects.get(id=user.id).equipment.add(equipment_id)
+  return redirect('equipment', equipment_id=equipment_id)
 
+
+def unassoc_equipment(request, user_id, equipment_id):
+  User.objects.get(id=equipment_id).equipment.remove(equipment_id)
+  return redirect('equipment', user_id=user_id)
+
+class EquipmentList(ListView):
+  model = Equipment
+
+
+class EquipmentDetail(DetailView):
+  model = Equipment
+
+
+class EquipmentCreate(CreateView):
+  model = Equipment
+  fields = '__all__'
+
+
+class EquipmentUpdate(UpdateView):
+  model = Equipment
+  fields = ['name', 'color']
+
+
+class EquipmentDelete(DeleteView):
+  model = Equipment
+  success_url = '/equipment_detail/'
 
 @login_required
 def portfolio(request):
@@ -101,6 +156,7 @@ def portfolio(request):
   http://localhost/8000/portfolio/
   """
   photos = Photo.objects.filter(user=request.user)
+  print(user)
   return render(request, 'portfolio.html', {'photos': photos})
 
 

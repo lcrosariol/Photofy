@@ -16,6 +16,7 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
+
 urlpatterns = [
 
     path('', views.home, name='home'),
@@ -29,12 +30,20 @@ urlpatterns = [
     path('bookings/<int:booking_id>', views.booking, name='booking'),
 
     
-    path('equipment/', views.equipment, name='equipment'),
+    path('equipment/', views.EquipmentList.as_view(), name='equipment_index'),
+    path('equipment/<int:pk>/', views.EquipmentDetail.as_view(), name='equipment_detail'),
+    path('equipment/create/', views.EquipmentCreate.as_view(), name='equipment_create'),
+    path('equipment/<int:pk>/update/', views.EquipmentUpdate.as_view(), name='equipment_update'),
+    path('equipment/<int:pk>/delete/', views.EquipmentDelete.as_view(), name='equipment_delete'),
     #equiptment page
+
+
+
+
     path('portfolio/', views.portfolio, name='portfolio'),
     #portfolio page
 
-    path('portfolio/<int:photographer_id>/add_photo/', views.add_photo, name='add_photo'),
+    path('portfolio/<int:_id>/add_photo/', views.add_photo, name='add_photo'),
     #add photographer_id to photo and function will tell it to add to the portfolio, and redirect to portfolio
 
     path('transactions/', views.transactions, name='transactions'),

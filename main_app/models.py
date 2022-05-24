@@ -28,11 +28,23 @@ class Equipment(models.Model):
 
     def __str__(self):
         return f'{self.type} {self.model}'
-
+        
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'pk': self.id})
 
 class Profile(User):
     equipment = models.ManyToManyField(Equipment)
-    
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'pk': self.id}) 
+
+    # def fed_for_today(self):
+    #     return self.feeding_set.filter(date=date.today()).count() >= len(MEALS) 
+        #The fed_for_today method demonstrates the use of filter() to obtain a 
+        #<QuerySet> for today's feedings, then count() is chained on to the query 
+        #to return the actual number of objects returned.
 
 class Photo(models.Model):
     url = models.URLField(max_length=350)
