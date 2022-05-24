@@ -26,11 +26,10 @@ def add_photo(request, photographer_id):
       bucket = os.environ['S3_BUCKET']
       s3.upload_fileobj(photo_file, bucket, key)
       url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-      print("++++++++++",url)
-      Photo.objects.create(url=url, photographer_id=photographer_id)
+      Photo.objects.create(url=url, user_id=photographer_id, name=key)
     except:
       print('An error occurred uploading file to S3')
-  return redirect('detail', photographer_id=photographer_id)
+  return redirect('portfolio')
 
 
 
@@ -100,7 +99,7 @@ def portfolio(request):
   about view
   http://localhost/8000/portfolio/
   """
-  photos = Photo.objects.filter(user=request.user)
+  photos = Photo.objects.filter(user=request.user.id)
   return render(request, 'portfolio.html', {'photos': photos})
 
 
