@@ -13,7 +13,7 @@
             </span>
           </div>
           <div class="card-action">
-            <form action="{% url 'assoc_equipment' user.id equipment.id %}" method="post">
+            <form action="{% url 'assoc_equipment' profile.id equipment.id %}" method="post">
               {% csrf_token %}
               <button type="submit" class="btn">Add</button>
             </form>
