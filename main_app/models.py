@@ -47,14 +47,16 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
+
 class Photo(models.Model):
     url = models.URLField(max_length=350)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True, null=True)
     # on_delete refers to User model
+    name = models.CharField(max_length=80)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.description}"
+        return f"{self.name}"
 
 
 class Booking(models.Model):
