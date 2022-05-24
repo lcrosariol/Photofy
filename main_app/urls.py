@@ -46,7 +46,7 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     #user profile page
 
-    path('signup/', views.signup, name='signup'),
+    path('accounts/signup/', views.signup, name='signup'),
 
 
 

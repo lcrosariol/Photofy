@@ -12,8 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import environ
 import django_on_heroku
-environ.Env()
-environ.Env.read_env()
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -126,7 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-LOGIN_REDIRECT_URL = '/bookings'
+LOGIN_REDIRECT_URL = '/bookings/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Default primary key field type
@@ -134,6 +133,8 @@ LOGOUT_REDIRECT_URL = '/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+environ.Env()
+environ.Env.read_env()
 
 # Configure Django App for Heroku.
 
