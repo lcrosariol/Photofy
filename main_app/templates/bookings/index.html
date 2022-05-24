@@ -5,5 +5,6 @@
     {% for booking in bookings  %}
         <p><a href="{% url 'booking' booking.id %}" >Date: {{ booking.date }}</a></p>
     {% endfor %}
+    <a href="{% url 'booking_create' %}">New Booking</a>
 
 {% endblock %}

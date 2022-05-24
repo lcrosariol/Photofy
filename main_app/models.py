@@ -70,6 +70,9 @@ class Booking(models.Model):
 
     class Meta:
         ordering = ['-date']
+    
+    def get_absolute_url(self):
+        return reverse('bookings')
 
 
 class Transaction(models.Model):

@@ -12,6 +12,7 @@
                 <td>{{transaction.date}}</td>
                 <td>{{transaction.get_payment_method_display}}</td>
                 <td>{{transaction.amount}}</td>
+                <td>{{transaction.booking}}</td>
                 <td><a href="{% url 'transaction_update' transaction.id %}">Update Transaction</a></td>
                 <td><a href="{% url 'transaction_delete' transaction.id %}">Delete Transaction</a></td>
             </tr>
