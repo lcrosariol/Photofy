@@ -21,24 +21,20 @@ def about(request):
   user = User.objects.all()
   return render(request, 'about.html')
   
-def user_index(request):
-  user = User.objects.all()
-  return render(request, 'user/index.html', { 'user': user })
+# def user_index(request):
+#   user = User.objects.all()
+#   return render(request, 'user/index.html', { 'user': user })
 
 def user_detail(request):
   try:
     user = User.objects.get(id=user_id)
-    equipments_user_doesnt_have = Equipment.objects.exclude(id__in = user.equipments.all().values_list('id'))
+    equipment_user_doesnt_have = Equipment.objects.exclude(id__in = user.equipment.all().values_list('id'))
     return render(request, 'user/detail',{
       'user': user,
-      'equipments': equipments_user_doesnt_have,
+      'equipment': equipment_user_doesnt_have,
     })
   except User.DoesNotExist:
     return render(request, 'notfound.html')
-
-def user_index(request):
-  user = User.objects.all()
-  return render(request, 'user/index.html', { 'user': user })
 
 
 
@@ -142,7 +138,7 @@ class EquipmentCreate(CreateView):
 
 class EquipmentUpdate(UpdateView):
   model = Equipment
-  fields = ['name', 'type']
+  fields = '__all__'
 
 
 class EquipmentDelete(DeleteView):
