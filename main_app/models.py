@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
 EQUIPMENT_TYPE = (
     ('V', 'Video'),
     ('P', 'Photo'),
@@ -29,7 +28,7 @@ class Equipment(models.Model):
     model = models.CharField(max_length=40)
 
     def __str__(self):
-        return f'{self.type} {self.model}'
+        return f"{self.get_type_display()} {self.model}"
     
     def get_absolute_url(self):
         return reverse('equipment')
