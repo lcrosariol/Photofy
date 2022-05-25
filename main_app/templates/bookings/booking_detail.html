@@ -5,15 +5,21 @@
     <div class="card">
         <div class="card-content">
             <span class="card-title">{{ booking.name }}</span>
+            {% if booking.date < today %}
+                <h4 style='color:red'> This Booking has Expired </h4>
+            {% endif %}
             <p>Date: {{ booking.date }}</p>
             <p>Location: {{ booking.location }}</p>
             <p>Paid: {{ booking.paid }}</p>
             <p>Cusotmer Name: {{ booking.customer_name }}</p>
             <p>Phone Number: {{ booking.phone_number }}</p>
             <p>Comments: {{ booking.comment }}</p>
+            <p>Transaction: </p>
         </div>
+        <a href="{% url 'booking_update' booking.id %}" >Update</a>
+        <a href="{% url 'booking_delete' booking.id %}" >Delete</a>
     </div>
-  </a>
+</a>
 
 
 {% endblock %}

@@ -4,7 +4,7 @@
 <h1>Portfolio Photos</h1>
 
 
-{% for photo in photo.photo_set.all %}
+{% for photo in photos.all %}
       <img class="responsive-img card-panel" src="{{photo.url}}">
     {% empty %}
       <div class="card-panel teal-text center-align">No Photos Uploaded</div>

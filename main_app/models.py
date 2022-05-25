@@ -31,6 +31,8 @@ class Equipment(models.Model):
     def __str__(self):
         return f'{self.type} {self.model}'
 
+    def get_absolute_url(self):
+        return reverse('equipment')
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -48,20 +50,21 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
+
 class Photo(models.Model):
     url = models.URLField(max_length=350)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True, null=True)
     # on_delete refers to User model
+    name = models.CharField(max_length=80)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.description}"
+        return f"{self.name}"
 
 
 class Booking(models.Model):
     date = models.DateField('Booking Date')
     location = models.CharField(max_length=200)
-    paid = models.BooleanField('Paid')
     customer_name = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=15)
     comment = models.CharField(max_length=200)
@@ -72,6 +75,9 @@ class Booking(models.Model):
 
     class Meta:
         ordering = ['-date']
+    
+    def get_absolute_url(self):
+        return reverse('bookings')
 
 
 class Transaction(models.Model):
@@ -84,6 +90,8 @@ class Transaction(models.Model):
     amount = models.DecimalField('Amount',max_digits=12, decimal_places=2, default=0.0)
     date = models.DateField('Transaction Date')
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
+    paid = models.BooleanField('Paid')
+
     
     def __str__(self):
         return f"{self.get_payment_method_display()} Payment on {self.date}"
