@@ -2,30 +2,37 @@
 {% block content %}
 
 <h1>Gear</h1>
-<div class="col s6">
-    <h3>Available Equipment</h3>
-      {% for equipment in equipments.all %}
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">
-              <div>{{ equipment.type }} {{ equipment.model }}</div>
+<div class="list-group-item list-group-item-action list-group-item-success">
+    {% if profile.equipments.count %}
+        {% for equipments in profile.equipments.all %}
+            <div class="list-group">
+            <div class="list-action">
+                <form action="{% url 'unassoc_equipment' equipments.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="list-group-item list-group-item-action list-group-item-primary">{{ equipments.type }} {{ equipments.model }}</button>
+                </form>
+            </div>
+            </div>
+        {% endfor %}
+    {% else %}
+    <h5>No Toys :(</h5>
+    {% endif %}
+</div>
 
-            </span>
-          </div>
-          <div class="card-action">
-            <form action="{% url 'assoc_equipment' equipment.id %}" method="post">
-              {% csrf_token %}
-              <button type="submit" class="btn">Add</button>
+<div class="lists-group">
+    <a href="#" class="list-group-item list-group-item-action list-group-item-success">A simple success list group item</a>
+    <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group item</a>
+</div>
+    {% if equipments.count %}
+        {% for equipments in equipments.all %}
+            <form action="{% url 'assoc_equipment' equipments.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="list-group-item list-group-item-action list-group-item-primary">{{ equipments.type }} {{ equipments.model }}</button>
             </form>
-          </div>
-        </div>
-      {% endfor %}
-  </div>
-
-
-    {% for equipment in profile.equipments.all %}
-        <p> {{equipment.model}}</p>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+        <h5>Already Has All Toys Available</h5>
+    {% endif %}
 
     <a href="{% url 'equipment_create' %}">Add Equipment</a>
 {% endblock %}
