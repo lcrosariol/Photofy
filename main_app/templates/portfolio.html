@@ -4,12 +4,7 @@
 <h1>Portfolio Photos</h1>
 
 
-{% for photo in photos.all %}
-      <img class="responsive-img card-panel" src="{{photo.url}}">
-    {% empty %}
-      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-    {% endfor %}
-    {% if user.is_authenticated %}
+{% if user.is_authenticated and user.id == profile_id  %}
     <form action="{% url 'add_photo' user.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
       {% csrf_token %}
       <input type="file" name="photo-file">
@@ -17,4 +12,22 @@
       <input type="submit" class="btn" value="Upload Photo">
     </form>
     {% endif %}
+
+
+<div class="row">
+{% for photo in photos.all %}
+      {% comment %} <img class="responsive-img card-panel" src="{{photo.url}}"> {% endcomment %}
+
+      <div class="col-md-4">
+        <div class="thumbnail">
+            <img src="{{photo.url}}" alt="Lights" style="width:100%; margin:15px; border-radius:10px">
+        </div>
+      </div>
+
+    {% empty %}
+      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+    {% endfor %}
+    </div>
+
+    
 {% endblock %}
