@@ -1,5 +1,3 @@
-from ast import Del
-from distutils.log import Log
 import os
 from re import L
 import uuid
@@ -15,6 +13,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from .forms import EquipmentForm
 # Create your views here.
 
 
@@ -90,9 +89,12 @@ def equipment(request):
     """
     http://localhost/8000/equipment/
     """
-    equipments = Equipment.objects.all()
+    print('HELLO', request.user.profile.id)
+    assoc_equipments = Equipment.objects.filter(profile=request.user.profile.id)
+    gear_user_doesnt_have = Equipment.objects.exclude(id__in = assoc_equipments.all().values_list('id'))
+    print(assoc_equipments)
+    return render(request, 'equipment.html',  {'equipments': gear_user_doesnt_have, 'assoc_equipments': assoc_equipments})
 
-    return render(request, 'equipment.html', {'equipments': equipments})
 
 
 def portfolio(request, profile_id):
@@ -136,6 +138,7 @@ def profile(request):
 @login_required
 def assoc_equipment(request, equipment_id):
   print('!!!!_------!!!!-----THIS', request.user.profile.id, equipment_id)
+  print(request.user.profile.equipments)
   Profile(id=request.user.profile.id).equipments.add(equipment_id)
   return redirect('equipment')
 
@@ -167,7 +170,9 @@ class EquipmentList(LoginRequiredMixin, ListView):
 
 class EquipmentCreate(LoginRequiredMixin, CreateView):
     model = Equipment
-    fields = '__all__'
+    form_class = EquipmentForm
+    success_url = '/equipment/'
+
 
 
 class EquipmentUpdate(LoginRequiredMixin, UpdateView):
