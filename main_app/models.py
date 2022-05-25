@@ -30,9 +30,11 @@ class Equipment(models.Model):
 
     def __str__(self):
         return f'{self.type} {self.model}'
-
+    
     def get_absolute_url(self):
         return reverse('equipment')
+
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

@@ -1,6 +1,7 @@
 from ast import Del
 from distutils.log import Log
 import os
+from re import L
 import uuid
 import boto3
 from datetime import date
@@ -12,6 +13,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -136,17 +138,17 @@ def profile(request):
     """
     return render(request, 'profile.html')
 
-
+@login_required
 def assoc_equipment(request, equipment_id):
-    Profile.objects.get(id=request.user.id).equipments.add(equipment_id)
-    print('THIS', request.user.id, equipment_id)
-    return redirect('equipment')
+  print('!!!!_------!!!!-----THIS', request.user.profile.id, equipment_id)
+  Profile(id=request.user.profile.id).equipments.add(equipment_id)
+  return redirect('equipment')
 
-
-def unassoc_equipment(request, profile_id, equipment_id):
-    Profile.objects.get(user_id=profile_id).equipment.remove(equipment_id)
-    return redirect('equipment', profile_id=profile_id)
-
+@login_required
+def unassoc_equipment(request, equipment_id):
+  print('!!!!_------!!!!-----THIS', request.user.profile.id, equipment_id)
+  Profile(id=request.user.profile.id).equipments.remove(equipment_id)
+  return redirect('equipment')
 
 class TransactionCreate(LoginRequiredMixin, CreateView):
     model = Transaction
