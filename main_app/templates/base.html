@@ -21,7 +21,7 @@
           <li><a href="{% url 'photographers' %}">Photographers</a></li>
           {% if user.is_authenticated %}
             <li><a href="{% url 'bookings' %}">Bookings</a></li>
-            <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li><a href="{% url 'portfolio' user.profile.id %}">Portfolio</a></li>
             <li><a href="{% url 'equipment' %}">Equipment</a></li>
             <li><a href="{% url 'transactions' %}">All Transactions</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
