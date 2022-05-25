@@ -10,12 +10,12 @@
   <p align="center">
     An application for photographers and customers.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>View the site »</strong></a>
+    <a href="https://github.com/othneildrew/Best-README-Template"><strong>View site »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Site</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Trello Board</a>
+    <!-- <a href="https://github.com/othneildrew/Best-README-Template">View Site</a>
+    · -->
+    <a href="https://github.com/users/lcrosariol/projects/2">Github Project Board</a>
     ·
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Pitch Deck</a>
   </p>
@@ -37,6 +37,8 @@ Project is created with:
 
 ## Next Steps
 * About section for photographer
+* Integrate Stripe to accept payments
+* Connect bookings to Google/Apple calendar
 
 
 
