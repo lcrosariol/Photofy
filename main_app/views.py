@@ -90,9 +90,12 @@ def equipment(request):
   about view
   http://localhost/8000/equipment/
   """
-  profile = Profile.objects.get(user=request.user)
-  print(profile)
-  return render(request, 'equipment.html', {'profile': profile})
+  
+  equipments = Equipment.objects.all()
+  # profile = Profile.objects.get(user=request.user)
+  # print(profile)
+  print(equipments)
+  return render(request, 'equipment.html', {'equipments': equipments})
 
 
 @login_required
