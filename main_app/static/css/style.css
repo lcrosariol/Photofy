@@ -1,0 +1,38 @@
+/* #container {
+	margin: 0px auto;
+	width: 500px;
+	height: 375px;
+	border: 10px #333 solid;
+}
+#videoElement {
+	width: 500px;
+	height: 375px;
+	background-color: #666;
+} */
+video { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 33%;
+    min-height: 33%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    /* opacity: 0%; */
+    filter: grayscale(100%) opacity(70%);
+    /* transform: rotate(360deg); */
+    /* animation-name: filtered; */
+}
+
+#container {
+    /* width: 50%;
+    height: 50%; */
+}
+
+#container #videoElement {
+    /* width: 50%;
+    height: 50%;
+    transition: all 10s;
+    transform: scale(2.0); */
+}
+
