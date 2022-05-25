@@ -33,6 +33,11 @@ urlpatterns = [
     path('bookings/<int:booking_id>', views.booking, name='booking'),
 
     path('equipment/', views.equipment, name='equipment'),
+    path('equipment/create/', views.EquipmentCreate.as_view(), name='equipment_create'),
+    path('equipment/<int:pk>/update/', views.EquipmentUpdate.as_view(), name='equipment_update'),
+    path('equipment/<int:pk>/delete/', views.EquipmentDelete.as_view(), name='equipment_delete'),
+    path('equipment/assoc_equipment/<int:equipment_id>/', views.assoc_equipment, name='assoc_equipment'),
+    path('equipment/unassoc_equipment/<int:equipment_id>/', views.unassoc_equipment, name='unassoc_equipment'),
     #equiptment page
     path('portfolio/', views.portfolio, name='portfolio'),
     #portfolio page
