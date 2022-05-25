@@ -77,11 +77,9 @@ def bookings(request):
   about view
   http://localhost/8000/bookings/
   """
-  today = str(date.today())
+  today = date.today()
   bookings = Booking.objects.filter(user=request.user)
-  print(today)
-  print(bookings)
-  return render(request, 'bookings/index.html', {'bookings': bookings, 'date': today})
+  return render(request, 'bookings/index.html', {'bookings': bookings, 'today': today})
 
 
 @login_required
@@ -114,8 +112,9 @@ def booking(request, booking_id):
   single booking view
   http://localhost/8000/portfolio/
   """
+  today = date.today()
   booking = Booking.objects.get(id=booking_id)
-  return render(request, 'bookings/booking_detail.html', {'booking': booking})
+  return render(request, 'bookings/booking_detail.html', {'booking': booking, 'today': today})
 
 
 @login_required
