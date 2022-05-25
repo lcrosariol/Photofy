@@ -82,6 +82,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'photofy',
+        'TEST': {
+            'NAME': 'mytestdatabase',
+            'USER': 'myappuser',
+            'PASSWORD': 'mypass'
+        },
         'USER': 'myappuser',
         'PASSWORD' : 'mypass',
         'HOST': 'localhost',
