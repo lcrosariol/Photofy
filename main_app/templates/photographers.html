@@ -4,14 +4,14 @@
 <h1>Welcome to Photofy</h1>
 <hr />
 <p>Where Photographers track their bookings, transactions, customers, equiptment, and portfolio images.</p>
-<div>
-    {% for photo in photos.all %}
-        <div style="display:inline-block; margin:20px">
-            <h3> {{ photo.user }}</h3>
-            <img style="width:200px; display: inline-block" src="{{ photo.url }}"/>
+<div style="display:flex;text-align: center;">
+    {% for user in users.all %}
+       <a href="{% url 'portfolio' user.id %}"> <div style="display:inline-block; margin:20px">
+            <h3> {{ user }}</h3>
+            <img style="width:200px; display: inline-block;border-radius: 50%;" src=""/>
         </div>
+    </a>
     {% endfor %}
 </div>
-
 
 {% endblock %}

@@ -72,8 +72,8 @@ def photographers(request):
     # profiles = Profile.objects.all()
 
     users = User.objects.all()
-    photos = Photo.objects.filter(user__in=users)
-    return render(request, 'photographers.html', {'photos': photos})
+    print("---------",users[0].profile.id)
+    return render(request, 'photographers.html', {'users': users})
 
 
 @login_required
@@ -99,12 +99,13 @@ def equipment(request):
     return render(request, 'equipment.html', {'equipments': equipments})
 
 
-@login_required
-def portfolio(request):
+
+def portfolio(request, profile_id):
     """
     http://localhost/8000/portfolio/
     """
-    photos = Photo.objects.filter(user=request.user.id)
+    
+    photos = Photo.objects.filter(user=profile_id)
     return render(request, 'portfolio.html', {'photos': photos})
 
 
