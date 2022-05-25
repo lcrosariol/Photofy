@@ -38,20 +38,20 @@
   </p>
 </div>
    <br />
-   <p align="center"> <strong>Photographers Screen</strong> </p>
+   <p align="center"> <strong>Portfolio Screen</strong> </p>
     <br />
 
-![PhotographersScreen](1.png)
+![PhotographersScreen](images/screen1.png)
 
-   <p align="center"> <strong>Booking Screen</strong> </p>
+   <p align="center"> <strong>Photographers Screen</strong> </p>
    <br />
 
-![BookingScreen](2.png)
+![BookingScreen](images/screen2.png)
 
-   <p align="center"><strong> Portfolio Screen </strong> </p>
+   <p align="center"><strong> Booking Screen </strong> </p>
    <br />
 
-![PortfolioScreen](3.png)
+![PortfolioScreen](images/screen3.png)
 
 <br />
 
