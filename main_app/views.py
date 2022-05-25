@@ -32,7 +32,7 @@ def add_photo(request, photographer_id):
             Photo.objects.create(url=url, user_id=photographer_id, name=key)
         except:
             print('An error occurred uploading file to S3')
-    return redirect('portfolio')
+    return redirect('user_portfolio')
 
 
 def signup(request):
@@ -72,7 +72,6 @@ def photographers(request):
     # profiles = Profile.objects.all()
 
     users = User.objects.all()
-    print("---------",users[0].profile.id)
     return render(request, 'photographers.html', {'users': users})
 
 
@@ -91,22 +90,24 @@ def equipment(request):
     """
     http://localhost/8000/equipment/
     """
-
     equipments = Equipment.objects.all()
-    # profile = Profile.objects.get(user=request.user)
-    # print(profile)
-    print(equipments)
+
     return render(request, 'equipment.html', {'equipments': equipments})
 
-
+@login_required
+def user_portfolio(request):
+    """
+    http://localhost/8000/portfolio/
+    """
+    photos = Photo.objects.filter(user=request.user)
+    return render(request, 'portfolio.html', { 'photos': photos })
 
 def portfolio(request, profile_id):
     """
     http://localhost/8000/portfolio/
     """
-    
     photos = Photo.objects.filter(user=profile_id)
-    return render(request, 'portfolio.html', {'photos': photos})
+    return render(request, 'portfolio.html', {'photos': photos, 'profile_id': profile_id})
 
 
 @login_required
