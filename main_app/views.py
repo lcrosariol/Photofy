@@ -6,6 +6,7 @@ import uuid
 import boto3
 from datetime import date
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import Equipment, Booking, Photo, Transaction, Profile, User
@@ -32,8 +33,7 @@ def add_photo(request, photographer_id):
             Photo.objects.create(url=url, user_id=photographer_id, name=key)
         except:
             print('An error occurred uploading file to S3')
-    return redirect('user_portfolio')
-
+    return HttpResponseRedirect(f'/portfolio/{photographer_id}')
 
 def signup(request):
     error_message = ''
@@ -94,19 +94,12 @@ def equipment(request):
 
     return render(request, 'equipment.html', {'equipments': equipments})
 
-@login_required
-def user_portfolio(request):
-    """
-    http://localhost/8000/portfolio/
-    """
-    photos = Photo.objects.filter(user=request.user)
-    return render(request, 'portfolio.html', { 'photos': photos })
 
 def portfolio(request, profile_id):
     """
     http://localhost/8000/portfolio/
     """
-    photos = Photo.objects.filter(user=profile_id)
+    photos = Photo.objects.filter(user=profile_id).order_by('-created_at')
     return render(request, 'portfolio.html', {'photos': photos, 'profile_id': profile_id})
 
 
