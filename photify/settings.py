@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import environ
-import django_on_heroku
+
 
 from pathlib import Path
 
@@ -133,5 +133,5 @@ environ.Env()
 environ.Env.read_env()
 
 # Configure Django App for Heroku.
-
+import django_on_heroku
 django_on_heroku.settings(locals())
