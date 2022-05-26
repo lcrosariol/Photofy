@@ -19,6 +19,16 @@ from .forms import EquipmentForm
 
 @login_required
 def add_photo(request, photographer_id):
+    """
+    Function to upload photo from user to AWS S3 Bucket.
+
+    ``Models Related``
+
+    Photo: :model:`main_app.Photo`
+
+    User: :model:`auth.User`
+
+    """
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
         s3 = boto3.client('s3')
@@ -35,6 +45,18 @@ def add_photo(request, photographer_id):
     return HttpResponseRedirect(f'/portfolio/{photographer_id}')
 
 def signup(request):
+    """
+    User sign up page
+
+    **Template**
+
+    :template:`main_app/registration/signupm.html`
+
+    **URL**
+
+    http://localhost:8000/accounts/signup/
+    
+    """
     error_message = ''
     if request.method == 'POST':
         # This is how to create a 'user' form object
@@ -57,16 +79,34 @@ def signup(request):
 @login_required
 def home(request):
     """
-    home view
+    **Template**
+
+    :template:`main_app/home.html`
+
+    **URL**
+
     http://localhost:8000/
+
     """
     return render(request, 'home.html')
 
 
 def photographers(request):
     """
-    photographers view
+    Displays all photographers on application. 
+
+    ``Models Related``
+
+    User: :model:`auth.User`
+
+    **Template**
+
+    :template:`main_app/photographers.html`
+
+    **URL**
+
     http://localhost/8000/photographers/
+
     """
     # profiles = Profile.objects.all()
 
@@ -77,7 +117,20 @@ def photographers(request):
 @login_required
 def bookings(request):
     """
+    Displays all bookings for current user
+
+    ``Models Related``
+
+    Booking: :model:`main_app.Booking`
+
+    **Template**
+
+    :template:`main_app/bookings/index.html`
+
+    **URL**
+
     http://localhost/8000/bookings/
+
     """
     today = date.today()
     bookings = Booking.objects.filter(user=request.user)
@@ -87,7 +140,19 @@ def bookings(request):
 @login_required
 def equipment(request):
     """
+    Displays all equipment the user does and does not have
+
+    ``Models Related``
+
+    Equipment: :model:`main_app.Equipment`
+
+    **Template**
+
+    :template:`main_app/equipment.html`
+
+    **URL**
     http://localhost/8000/equipment/
+
     """
     print('HELLO', request.user.profile.id)
     assoc_equipments = Equipment.objects.filter(profile=request.user.profile.id)
@@ -99,7 +164,18 @@ def equipment(request):
 
 def portfolio(request, profile_id):
     """
+    Displays all photos belonging to photographer
+
+    ``Models Related``
+
+    Photo :model:`main_app.Photo`
+
+    **Template**
+
+    :template:`main_app/portfolio.html`
+
     http://localhost/8000/portfolio/
+
     """
     profile_user = User.objects.get(id=profile_id)
     photos = Photo.objects.filter(user=profile_id).order_by('-created_at')
@@ -109,8 +185,20 @@ def portfolio(request, profile_id):
 @login_required
 def booking(request, booking_id):
     """
-    single booking view
+    Displays single booking belonging to photographer
+
+    ``Models Related``
+
+    Booking: :model:`main_app.Booking`
+
+    **Template**
+
+    :template:`main_app/bookings/booking_detail.html`
+
+    *URL*
+
     http://localhost/8000/portfolio/
+
     """
     today = date.today()
     booking = Booking.objects.get(id=booking_id)
@@ -120,8 +208,22 @@ def booking(request, booking_id):
 @login_required
 def transactions(request):
     """
-    transactions view
+    Displays transactions made by photographer
+
+    ``Models Related``
+
+    Transaction: :model:`main_app.Transaction`
+    
+    Booking: :model:`main_app.Booking`
+
+    **Template**
+
+    :template:`main_app/transactions.html`
+
+    **URL**
+
     http://localhost/8000/transactions/
+
     """
     bookings = Booking.objects.filter(user=request.user)
     bookings_list = list(bookings)
@@ -138,6 +240,16 @@ def profile(request):
 
 @login_required
 def assoc_equipment(request, equipment_id):
+  """
+  Grabs and displays all the equipment connected to the photographer
+
+  ``Models Related``
+
+  Profile: :model:`main_app.Profile`
+
+  Equipment:model:`main_app.Equipment`
+
+  """
   print('!!!!_------!!!!-----THIS', request.user.profile.id, equipment_id)
   print(request.user.profile.equipments)
   Profile(id=request.user.profile.id).equipments.add(equipment_id)
@@ -145,6 +257,16 @@ def assoc_equipment(request, equipment_id):
 
 @login_required
 def unassoc_equipment(request, equipment_id):
+  """
+  Grabs and displays all the equipment not belonging to the photographer
+
+  ``Models Related``
+
+  Profile: :model:`main_app.Profile`
+
+  Equipment:model:`main_app.Equipment`
+
+  """
   print('!!!!_------!!!!-----THIS', request.user.profile.id, equipment_id)
   Profile(id=request.user.profile.id).equipments.remove(equipment_id)
   return redirect('equipment')
