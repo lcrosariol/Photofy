@@ -46,3 +46,6 @@
     transform : translate(-50%, -50%);
 }
 
+.navbar-collapse.in {
+    display: block !important;
+}
