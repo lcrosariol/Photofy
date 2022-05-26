@@ -4,6 +4,8 @@ from datetime import date
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.db.models import Sum
+
 
 EQUIPMENT_TYPE = (
     ('V', 'Video'),
@@ -72,7 +74,7 @@ class Booking(models.Model):
     phone_number = models.CharField(max_length=15)
     comment = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    
     def __str__(self):
         return f"{self.location} on {self.date}"
 
@@ -80,7 +82,7 @@ class Booking(models.Model):
         ordering = ['-date']
     
     def get_absolute_url(self):
-        return reverse('bookings')
+        return reverse('booking', kwargs={'booking_id': self.id})
 
 
 class Transaction(models.Model):
@@ -92,9 +94,18 @@ class Transaction(models.Model):
     )
     amount = models.DecimalField('Amount',max_digits=12, decimal_places=2, default=0.0)
     date = models.DateField('Transaction Date')
-    booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
+    booking = models.OneToOneField(Booking, on_delete=models.CASCADE)
     paid = models.BooleanField('Paid')
 
-    
     def __str__(self):
-        return f"{self.get_payment_method_display()} Payment on {self.date}"
+        return f"{self.get_payment_method_display()} Payment of ${self.amount} on {self.date}"
+
+    def total_sale(self):
+        total = Transaction.objects.aggregate(TOTAL = Sum('amount'))['TOTAL']
+        return total
+
+    def booking_link(self):
+        booking = Transaction.objects.get(booking.booking_id)
+
+    def get_absolute_url(self):
+        return reverse('transactions')

@@ -10,11 +10,14 @@
             {% endif %}
             <p>Date: {{ booking.date }}</p>
             <p>Location: {{ booking.location }}</p>
-            <p>Paid: {{ booking.paid }}</p>
             <p>Cusotmer Name: {{ booking.customer_name }}</p>
             <p>Phone Number: {{ booking.phone_number }}</p>
             <p>Comments: {{ booking.comment }}</p>
-            <p>Transaction: </p>
+            {% if no_transaction == False %}
+                <a href="{% url 'transaction_create' %}">Link Transaction</a>
+            {% else %}
+                <p>Transaction: {{ no_transaction }} </p>
+            {% endif %}
         </div>
         <a href="{% url 'booking_update' booking.id %}" >Update</a>
         <a href="{% url 'booking_delete' booking.id %}" >Delete</a>
