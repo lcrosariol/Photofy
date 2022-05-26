@@ -3,11 +3,10 @@
 
 <h1>Meet our Photographers</h1>
 <hr />
-        <div style="display:flex;text-align: center;flex-wrap: wrap;justify-content: center;">
-        {% for user in users.all %}
-        <div style='width:150px;'>
-                <a href="{% url 'portfolio' user.id %}"> <div style="display:inline-block; margin:20px">
-                    <div class="card">
+
+
+
+                    {% comment %} <div class="card">
                         <h5> {{ user }}</h5>
                         <lottie-player 
                         src="../static/images/profile.json"
@@ -20,7 +19,38 @@
                     </div>
                 </div>
             </a>
-        </div>
+        </div> {% endcomment %}
+
+
+        {% for user in users.all %}
+        <section id="scroll">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <a href="{% url 'portfolio' user.id %}">
+                        <div class="p-5"><lottie-player 
+                            src="../static/images/profile.json"
+                            background="transparent"
+                            speed="1"
+                            style="text-align: center"
+                            loop
+                            autoplay>
+                            </lottie-player></div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="p-5">
+                            <h2 class="display-4">{{ user }}</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
 
         {% endfor %}
 </div>
