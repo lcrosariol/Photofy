@@ -16,32 +16,10 @@
   <script defer src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
-  {% comment %} <header class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper grey darken-3">
-        <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Photofy</a></li>
-        </ul>
-        <ul class="right">
-          <li><a href="{% url 'photographers' %}">Photographers</a></li>
-          {% if user.is_authenticated %}
-            <li><a href="{% url 'bookings' %}">Bookings</a></li>
-            <li><a href="{% url 'portfolio' user.profile.id %}">Portfolio</a></li>
-            <li><a href="{% url 'equipment' %}">Equipment</a></li>
-            <li><a href="{% url 'transactions' %}">All Transactions</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-          {% else %}
-            <li><a href="{% url 'signup' %}">Sign Up</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-          {% endif %}
-        </ul>
-      </div>
-    </nav> {% endcomment %}
-
 
   <nav class="navbar navbar-expand-lg navbar-light "style="background-color: #e3f2fd;">
     <lottie-player 
-      src="../static/images/pic_frame.json"
+      src="../../static/images/pic_frame.json"
       background="transparent"
       speed="1"
       style="width:105px"
@@ -90,27 +68,10 @@
   </nav>
 
 
-
-
-
-
-
-
-
-{% comment %} ---------------------------------------------------------------- {% endcomment %}
-
-
-
-
-
-
-  {% comment %} </header> {% endcomment %}
   <main class="container">
     {% block content %}
     {% endblock %}
   </main>
-
-
   
 </body>
 </html> 
