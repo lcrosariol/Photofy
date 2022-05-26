@@ -99,8 +99,9 @@ def portfolio(request, profile_id):
     """
     http://localhost/8000/portfolio/
     """
+    profile_user = User.objects.get(id=profile_id)
     photos = Photo.objects.filter(user=profile_id).order_by('-created_at')
-    return render(request, 'portfolio.html', {'photos': photos, 'profile_id': profile_id})
+    return render(request, 'portfolio.html', {'photos': photos, 'profile_id': profile_id, "profile_user":profile_user})
 
 
 @login_required

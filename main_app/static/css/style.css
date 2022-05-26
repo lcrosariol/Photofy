@@ -11,7 +11,6 @@
     filter: grayscale(100%) opacity(60%);
     /* transform: rotate(360deg); */
     /* animation-name: filtered; */
-    
 }
 
 #container > #videoElement {
@@ -36,6 +35,14 @@
     /* -webkit-transform-origin: 50% 50%; */
 
 }
+.initial-class{
+    position : initial;
+}
 
-
+.enlarge-class{
+    position: fixed;
+    left : 50%;
+    top : 50%;
+    transform : translate(-50%, -50%);
+}
 
