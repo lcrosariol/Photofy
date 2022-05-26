@@ -3,25 +3,6 @@
 
 <h1>Meet our Photographers</h1>
 <hr />
-
-
-
-                    {% comment %} <div class="card">
-                        <h5> {{ user }}</h5>
-                        <lottie-player 
-                        src="../static/images/profile.json"
-                        background="transparent"
-                        speed="1"
-                        style="text-align: center"
-                        loop
-                        autoplay>
-                        </lottie-player>
-                    </div>
-                </div>
-            </a>
-        </div> {% endcomment %}
-
-
         {% for user in users.all %}
         <section id="scroll">
             <div class="container px-5">
@@ -47,10 +28,6 @@
                 </div>
             </div>
         </section>
-
-
-
-
 
         {% endfor %}
 </div>
