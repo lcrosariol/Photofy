@@ -15,11 +15,16 @@
                 <td>{{transaction.booking}}</td>
                 <td><a href="{% url 'transaction_update' transaction.id %}">Update Transaction</a></td>
                 <td><a href="{% url 'transaction_delete' transaction.id %}">Delete Transaction</a></td>
-            </tr>
+                <td>{{ transaction.total_sale }}</td>
+        </tr>
         {% endfor %}
+                
     </tbody>
 </table>
 <a href="{% url 'transaction_create' %}">New Transaction</a>
 
+<script>
+    
+</script>
 
 {% endblock %}
