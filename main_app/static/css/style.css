@@ -1,6 +1,6 @@
 body{
     font-family: 'Roboto', sans-serif;
-    background-color: rgb(238, 238, 238)
+    background-color: rgb(222, 222, 222)
 }
 #videoElement { 
     position: fixed;
@@ -100,6 +100,18 @@ body{
 .lottie-wrapper{
     position: relative;
 }
+#photographers-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.profile-wrapper{
+    width: 200px !important;
+    margin: 23px !important;
+    background-color: whitesmoke;
+    
+}
 
 @media only screen and (min-width: 992px) {
   .navbar {
@@ -112,3 +124,32 @@ body{
     padding: 0 0.8em;
   }
 }
+
+ 
+.social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+  }
+  
+.social-link:hover,
+.social-link:focus {
+    background: #ddd;
+    text-decoration: none;
+    color: #555;
+  }
+  
+  .progress {
+    height: 10px;
+  }
+  
+
+
+
