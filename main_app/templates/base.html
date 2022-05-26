@@ -21,19 +21,18 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light "style="background-color: #e3f2fd;">
+  <nav class="navbar navbar-expand-lg navbar-light "style="background-color: rgb(64, 64, 64);">
     <lottie-player 
-      src="../../static/images/pic_frame.json"
+      src="../../../static/images/pic_frame.json"
       background="transparent"
       speed="1"
       style="width:105px"
       loop
       autoplay>
       </lottie-player>
-    <a class="navbar-brand" href="#">
-      Photofy</a>
+    <a class="navbar-brand" href="#">Photofy</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon "></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
@@ -50,11 +49,10 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'portfolio' user.profile.id %}">Portfolio</a>
         </li>
-        {% else %}
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'photographers' %}">Photographers</a>
         </li>
-        {% endif %}
         {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Logout</a>
