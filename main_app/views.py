@@ -114,7 +114,19 @@ def booking(request, booking_id):
     """
     today = date.today()
     booking = Booking.objects.get(id=booking_id)
-    return render(request, 'bookings/booking_detail.html', {'booking': booking, 'today': today})
+
+    try:
+        booking.transaction
+        print(booking.transaction)
+        no_transaction = True
+        return render(request, 'bookings/booking_detail.html', {'booking': booking, 'today': today, 'no_transaction': no_transaction})
+    except:
+        print('!!!!!!!!!!!!!!booking does not exist')
+        no_transaction = False
+        return render(request, 'bookings/booking_detail.html', {'booking': booking, 'today': today, 'no_transaction': no_transaction})
+
+
+    
 
 
 @login_required
@@ -152,6 +164,8 @@ def unassoc_equipment(request, equipment_id):
 class TransactionCreate(LoginRequiredMixin, CreateView):
     model = Transaction
     fields = '__all__'
+    
+
 
 
 class TransactionUpdate(LoginRequiredMixin, UpdateView):

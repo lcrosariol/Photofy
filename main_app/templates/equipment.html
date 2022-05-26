@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid">
-
     <div class="row justify-content-around">
+        <div class="col-2">
+            <a href="{% url 'equipment_create' %}"><i class="fas fa-circle-plus"></i>Add Equipment</a>
+        </div>
         <div class="col-4">
             <h1>Gear</h1>
             {% if assoc_equipments.count %}
@@ -33,11 +35,10 @@
                     </div>
                 {% endfor %}
             {% else %}
-                <h5><a href="{% url 'equipment_create' %}"><i class="fas fa-circle-plus"></i></a></h5>
+                <h5><a href="{% url 'equipment_create' %}"><i class="fas fa-circle-plus"></i>Add Equipment</a></h5>
             {% endif %}
         </div>
     </div>
 </div>
 
-    <a href="{% url 'equipment_create' %}">Add Equipment</a>
 {% endblock %}

@@ -6,7 +6,7 @@
         {% if booking.date > today %}
             <p>Upcoming <a href="{% url 'booking' booking.id %}" >{{ booking.date }} </a></p>
         {% else %}
-            <p>Passed <a href="{% url 'booking' booking.id %}" >{{ booking.date }} </a></p>
+            <p>Previous <a href="{% url 'booking' booking.id %}" class="btn-light" >{{ booking.date }} </a></p>
         {% endif %}
     {% endfor %}
     <a href="{% url 'booking_create' %}">New Booking</a>
