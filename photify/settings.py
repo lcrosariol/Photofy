@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import environ
-import django_on_heroku
+
 
 from pathlib import Path
 
@@ -79,12 +79,8 @@ WSGI_APPLICATION = 'photify.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'photofy',
-        'USER': 'myappuser',
-        'PASSWORD' : 'mypass',
-        'HOST': 'localhost',
-        'PORT' : 5432
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -137,5 +133,5 @@ environ.Env()
 environ.Env.read_env()
 
 # Configure Django App for Heroku.
-
+import django_on_heroku
 django_on_heroku.settings(locals())

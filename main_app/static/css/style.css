@@ -1,7 +1,30 @@
 body{
+
+    background-image: url('https://i.imgur.com/8ivWzZ1.jpg');
+}
+
+main {
+    font-family: 'Patrick Hand SC', cursive;
+    font-size: 18px;
+    color:#0c0701;
+}
+
+
+#bk {
+
+=======
     font-family: 'Roboto', sans-serif;
     background-color: rgb(222, 222, 222)
+
 }
+
+#margintop {
+    margin-top: 20vmin;
+    border: 5px solid #0c0701;
+    border-radius: 5px;
+    background-color: rgb(173, 111, 62, 0.5);
+}
+
 #videoElement { 
     position: fixed;
     top: 50%;
@@ -18,7 +41,7 @@ body{
 }
 
 #container > #videoElement {
-    border: 5px solid black;
+    border: 5px solid #0c0701;
     /* width: 50%;
     height: 50%; */
 }
@@ -61,36 +84,43 @@ body{
 
 
 .navbar-brand{
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 2.5em !important;
     color:rgb(255, 181, 95)!important;
-    text-shadow: 2px 2px 2px #573209;
+    text-shadow: 2px 2px 2px #0c0701;
 }
 
 .navbar{
-    -webkit-box-shadow: 0px 7px 23px 5px #000000; 
-    box-shadow: 0px 7px 23px 5px #000000;
+    -webkit-box-shadow: 0px 7px 23px 5px #0c0701; 
+    box-shadow: 0px 7px 23px 5px #0c0701;
+    font-family: 'Delius Unicase', cursive;
+    border-radius: 0 0 10px 10px;
 }
 
 .navbar-brand:hover{
-    text-shadow: 0px 6px 12px #000000;
+    text-shadow: 0px 6px 12px #0c0701;
     transition: text-shadow 0.3s ease-in-out;
+
 }
 
 
 .navbar .navbar-nav .nav-link:hover {
-    background-color: rgb(255, 241, 176);
-    color: #000000;
-  }  
+    background-color: rgb(142, 120, 19);
+    color: #0c0701;
+    border-radius: 5px;
+}  
+
 .navbar .navbar-nav .nav-link {
-  padding: 0.6em;
-  font-size: 1.2em;
-  transition: all 0.5s;
+    padding: 0.6em;
+    font-size: 1.2em;
+    transition: all 0.5s;
 }
+
 .navbar .navbar-brand {
-  padding: 0 0.6em;
-  font-size: 1.5em;
-  font-weight: bold;
+    padding: 0 0.6em;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 .navbar-brand:not(:hover){
@@ -114,6 +144,19 @@ body{
 }
 
 @media only screen and (min-width: 992px) {
+
+    .navbar {
+        padding: 0;
+    }
+    .navbar .navbar-nav .nav-link {
+        padding: 1em 0.7em;
+        opacity: 70%;
+    }
+    .navbar .navbar-brand {
+        padding: 0 0.8em;
+    }
+}
+
   .navbar {
     padding: 0;
   }
@@ -150,6 +193,7 @@ body{
     height: 10px;
   }
   
+
 
 
 

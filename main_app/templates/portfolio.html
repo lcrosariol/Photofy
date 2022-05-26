@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h3>Welcome {{ profile_user }}'s Portfolio</h3>
+<h3>Welcome to {{ profile_user }}'s Portfolio.</h3>
 <hr />
 
 {% if user.is_authenticated and user.id == profile_id  %}
