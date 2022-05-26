@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Portfolio Photos</h1>
-
+<h3>Welcome {{ profile_user }}'s Portfolio</h3>
+<hr />
 
 {% if user.is_authenticated and user.id == profile_id  %}
     <form action="{% url 'add_photo' user.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
@@ -16,11 +16,9 @@
 
 <div class="row">
 {% for photo in photos.all %}
-      {% comment %} <img class="responsive-img card-panel" src="{{photo.url}}"> {% endcomment %}
-
       <div class="col-md-4">
         <div class="thumbnail">
-            <img src="{{photo.url}}" alt="Lights" style="width:100%; margin:15px; border-radius:10px">
+            <img src="{{photo.url}}" alt="Lights" class="initial-class" style="width:100%; margin:15px; border-radius:10px" onclick="enlargeImg(this)">
         </div>
       </div>
 
@@ -29,5 +27,20 @@
     {% endfor %}
     </div>
 
+    <script>
+      // Function to enlarge image size
+      function enlargeImg(img) {
+        if (img.classList.contains('initial-class')) {
+          img.classList.remove("initial-class");
+          img.classList.add("enlarge-class");
+          clickCheck = false;
+        }
+        else {
+          img.classList.add("initial-class");
+          img.classList.remove("enlarge-class");
+          clickCheck = true;
+        }
+      }
+  </script>
     
 {% endblock %}
