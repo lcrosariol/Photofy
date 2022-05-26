@@ -2,37 +2,38 @@
 {% block content %}
 
 <h1>Gear</h1>
-<div class="list-group-item list-group-item-action list-group-item-success">
-    {% if profile.equipments.count %}
-        {% for equipments in profile.equipments.all %}
-            <div class="list-group">
-            <div class="list-action">
-                <form action="{% url 'unassoc_equipment' equipments.id %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="list-group-item list-group-item-action list-group-item-primary">{{ equipments.type }} {{ equipments.model }}</button>
-                </form>
-            </div>
-            </div>
-        {% endfor %}
-    {% else %}
-    <h5>No Toys :(</h5>
-    {% endif %}
-</div>
+<div class="row">
+    <div class="col s6">
+        {% if assoc_equipments.count %}
+            {% for assoc_equipment in assoc_equipments %}
+                <div> 
+                    <form action="{% url 'unassoc_equipment' assoc_equipment.id %}" method="post">
+                        {% csrf_token %}
+                        <a href="{% url 'unassoc_equipment' assoc_equipment.id %}" class="list-group-item list-group-item-action list-group-item-success">{{ assoc_equipment.get_type_display }} {{ assoc_equipment.model }}</a>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h5>Get started by adding gear from the list below, or <a href="{% url 'equipment_create' %}">adding your own</a></h5>
+        {% endif %}
+    </div>
 
-<div class="lists-group">
-    <a href="#" class="list-group-item list-group-item-action list-group-item-success">A simple success list group item</a>
-    <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group item</a>
-</div>
-    {% if equipments.count %}
-        {% for equipments in equipments.all %}
-            <form action="{% url 'assoc_equipment' equipments.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="list-group-item list-group-item-action list-group-item-primary">{{ equipments.type }} {{ equipments.model }}</button>
-            </form>
-        {% endfor %}
-    {% else %}
-        <h5>Already Has All Toys Available</h5>
-    {% endif %}
 
+    <div class="current-gear">
+        <h1>Available Gear</h1>
+        {% if equipments.count %}
+            {% for equipment in equipments %}
+                <div>
+                    <form action="{% url 'assoc_equipment' equipment.id %}" method="post">
+                        {% csrf_token %}
+                        <button class="list-group-item list-group-item-action list-group-item-primary"> Add {{ equipment.get_type_display}} {{ equipment.model }} to your gear</button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h5><a href="{% url 'equipment_create' %}">Add Equipment</a></h5>
+        {% endif %}
+    </div>
+</div>
     <a href="{% url 'equipment_create' %}">Add Equipment</a>
 {% endblock %}
