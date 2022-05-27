@@ -13,11 +13,12 @@
         {{ form|crispy  }}
     </table>
     <input type="submit" value="Save" class="btn save-btn">
-  </form>
+  </form>  
 
-
-
-
-  
+<script>
+  $(document).ready(function() {
+    $('.dateinput').datepicker({ format: "yyyy-mm-dd" });
+}); 
+</script>
 
 {% endblock %}
