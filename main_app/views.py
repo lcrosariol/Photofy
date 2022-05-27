@@ -95,6 +95,14 @@ def photographers(request):
 
     """
     users = User.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(users, 5)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
     return render(request, 'photographers.html', {'users': users})
 
 
@@ -170,10 +178,6 @@ def portfolio(request, profile_id):
         photos = paginator.page(1)
     except EmptyPage:
         photos = paginator.page(paginator.num_pages)
-    
-    print(photos[0])
-    
-    
     return render(request, 'portfolio.html', {'photos':photos, 'profile_id': profile_id, "profile_user":profile_user})
 
 
