@@ -18,9 +18,13 @@ main {
 
 #margintop {
     margin-top: 20vmin;
-    border: 5px solid #0c0701;
+    margin-bottom: 20vmin;
+    height: 70vmin;
+    width: 70vw;
+    border: 5px solid 
+#1a0e24;
     border-radius: 5px;
-    background-color: rgb(173, 111, 62, 0.5);
+    background-color: rgba(173, 110, 62, 0.335);
 }
 
 #videoElement { 
