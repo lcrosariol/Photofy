@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div class="box">
 <h1>Customers</h1>
 
 {% for customer in customer_list %}
@@ -12,6 +12,7 @@
         </div>
     </div>
   </a>
+</div>
 {% endfor %}
 
 {% endblock %}
