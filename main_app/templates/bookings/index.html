@@ -2,6 +2,7 @@
 {% block content %}
 
 <h1>Bookings</h1>
+<hr/>
     {% for booking in bookings  %}
         {% if booking.date > today %}
             <p>Upcoming <a href="{% url 'booking' booking.id %}" >{{ booking.date }} </a></p>
