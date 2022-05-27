@@ -26,6 +26,7 @@ urlpatterns = [
     path('bookings/<int:pk>/update/', views.BookingUpdate.as_view(), name='booking_update'),
     path('bookings/<int:pk>/delete/', views.BookingDelete.as_view(), name='booking_delete'),
     path('bookings/<int:booking_id>', views.booking, name='booking'),
+
     # Equipments routes
     path('equipment/', views.equipment, name='equipment'),
     path('equipment/create/', views.EquipmentCreate.as_view(), name='equipment_create'),

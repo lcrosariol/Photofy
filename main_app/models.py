@@ -76,7 +76,7 @@ class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f"{self.location} on {self.date}"
+        return f"{self.date} -- {self.customer_name} at {self.location}"
 
     class Meta:
         ordering = ['-date']
@@ -98,14 +98,9 @@ class Transaction(models.Model):
     paid = models.BooleanField('Paid')
 
     def __str__(self):
-        return f"{self.get_payment_method_display()} Payment of ${self.amount} on {self.date}"
-
-    def total_sale(self):
-        total = Transaction.objects.aggregate(TOTAL = Sum('amount'))['TOTAL']
-        return total
-
-    def booking_link(self):
-        booking = Transaction.objects.get(booking.booking_id)
+        return f"{self.get_payment_method_display()} Payment of ${self.amount} on {self.date} for {self.booking}"
 
     def get_absolute_url(self):
         return reverse('transactions')
+    
+    

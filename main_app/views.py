@@ -1,3 +1,4 @@
+from functools import total_ordering
 import os
 from re import L
 import uuid
@@ -14,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from .forms import EquipmentForm
+from django.db.models import Sum
 # Create your views here.
 
 
@@ -126,9 +128,6 @@ def booking(request, booking_id):
         return render(request, 'bookings/booking_detail.html', {'booking': booking, 'today': today, 'no_transaction': no_transaction})
 
 
-    
-
-
 @login_required
 def transactions(request):
     """
@@ -137,8 +136,11 @@ def transactions(request):
     """
     bookings = Booking.objects.filter(user=request.user)
     bookings_list = list(bookings)
-    transactions = Transaction.objects.filter(booking__in=bookings_list)
-    return render(request, 'transactions.html', {'transactions': transactions})
+    transaction = Transaction.objects.filter(booking__in=bookings_list)
+    transaction_total = transaction.aggregate(Sum('amount')).get('amount__sum',0.00) if transaction else 0
+    print(transaction_total)
+    return render(request, 'transactions.html', {'transaction': transaction, 'transaction_total': transaction_total})
+
 
 
 @login_required
