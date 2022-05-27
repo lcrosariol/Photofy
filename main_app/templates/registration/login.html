@@ -7,10 +7,9 @@
 <form method="post" action="{% url 'login' %}">
   {% csrf_token %}
   {{ form|crispy  }}
-  <input type="submit" class="btn btn-primary" login">
+  <input type="submit" value="Login" class="btn btn-primary save-btn" login>
   <input type="hidden" name="next" value="{{ next }}">
-  <!-- hidden button goes to server and takes us to the location we want if the
-authentication is successful -->
+ 
 </form>
 
 

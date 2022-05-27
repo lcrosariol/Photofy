@@ -6,7 +6,7 @@ main {
     font-family: "Gill Sans Extrabold", sans-serif;
     font-size: 18px;
     color:
-#1a0e24;
+    #1d1d1d;
 }
 
 #container-main{
@@ -42,21 +42,21 @@ main {
     color:rgb(255, 181, 95)!important;
     text-shadow: 2px 2px 2px 
 
-#1a0e24;
+#1d1d1d;
 }
 
 .navbar{
     -webkit-box-shadow: 0px 7px 23px 5px 
-#1a0e24; 
+    #1d1d1d; 
     box-shadow: 0px 7px 23px 5px 
-#1a0e24;
+    #1d1d1d;
     font-family: 'Delius Unicase', cursive;
     border-radius: 0 0 10px 10px;
 }
 
 .navbar-brand:hover{
     text-shadow: 0px 6px 12px 
-#1a0e24;
+    #1d1d1d;
     transition: text-shadow 0.3s ease-in-out;
 
 }
@@ -65,9 +65,10 @@ main {
 .navbar .navbar-nav .nav-link:hover {
     background-color: #ffe79d;
     color: 
-#1a0e24;
+    #1d1d1d;
     border-radius: 5px;
 }  
+
 
 .navbar .navbar-nav .nav-link {
     padding: 0.6em;
@@ -147,25 +148,14 @@ main {
 }
 
 
-#id_email, 
-#id_facebook, 
-#id_linkedin, 
-#id_twitter, 
-#id_instagram,
-#id_model{
-    width:400px;
-}
-
-#equipment-form{
-    width:600px;
-}
-
 .save-btn-wrapper{
     display:flex;
+    float: right;
 }
 
 .save-btn{
     margin-top: 10px;
+    float: right;
 }
 
 

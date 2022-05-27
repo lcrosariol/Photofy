@@ -76,21 +76,6 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 
-@login_required
-def home(request):
-    """
-    **Template**
-
-    :template:`main_app/home.html`
-
-    **URL**
-
-    http://localhost:8000/
-
-    """
-    return render(request, 'home.html')
-
-
 def photographers(request):
     """
     Displays all photographers on application. 
@@ -256,8 +241,6 @@ class TransactionCreate(LoginRequiredMixin, CreateView):
     fields = '__all__'
     
 
-
-
 class TransactionUpdate(LoginRequiredMixin, UpdateView):
     model = Transaction
     fields = ['amount', 'paid']
@@ -277,7 +260,6 @@ class EquipmentCreate(LoginRequiredMixin, CreateView):
     model = Equipment
     form_class = EquipmentForm
     success_url = '/equipment/'
-
 
 
 class EquipmentUpdate(LoginRequiredMixin, UpdateView):
