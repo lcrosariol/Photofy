@@ -101,6 +101,14 @@ main {
     background-color: whitesmoke;
     
 }
+#transaction-card{
+  background-color: rgba(85, 85, 85, 0.528);
+}
+#transaction-table{
+  background-color: rgba(221, 221, 221, 0.717);
+  box-shadow: 12px 4px 10px
+  #1d1d1d;
+}
 
 @media only screen and (min-width: 992px) {
   .navbar {
@@ -157,7 +165,6 @@ main {
     margin-top: 10px;
     float: right;
 }
-
 
 
 
