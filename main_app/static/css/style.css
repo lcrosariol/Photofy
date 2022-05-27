@@ -10,6 +10,19 @@ main {
 }
 
 
+
+#bk {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(222, 222, 222)
+
+}
+
+#margintop {
+    margin-top: 20vmin;
+    margin-bottom: 20vmin;
+    height: 70vmin;
+    width: 70vw;
+
 #margintop {
     margin-top: 20vmin;
     border: 5px solid 
