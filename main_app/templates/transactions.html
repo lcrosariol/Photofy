@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="box">
+
 <h1>Transactions</h1>
+<hr/>
 <table class="striped">
     <thead>
-        <tr class="box"><th>Date</th><th>Payment Method</th><th>Amount</th><th class="box">Booking</th><th>Update</th><th>Delete</th><th>Total Sale</th></tr>
+        <tr class="th"><th>Date</th><th>Payment Method</th><th>Amount</th></tr>
     </thead>
     <tbody>
         {% for transaction in transaction %}
             <tr>
-                <td class="box">{{transaction.date}}</td>
-                <td class="box">{{transaction.get_payment_method_display}}</td>
-                <td class="box">{{transaction.amount}}</td>
-                <td class="box">{{transaction.booking}}</td>
-                <td class="box"><a href="{% url 'transaction_update' transaction.id %}">Update Transaction</a></td>
-                <td class="box"><a href="{% url 'transaction_delete' transaction.id %}">Delete Transaction</a></td>
-                <td class="box">{{ transaction.total_sale }}</td>
+                <td>{{transaction.date}}</td>
+                <td>{{transaction.get_payment_method_display}}</td>
+                <td>{{transaction.amount}}</td>
+                <td>{{transaction.booking}}</td>
+                <td><a href="{% url 'transaction_update' transaction.id %}">Update Transaction</a></td>
+                <td><a href="{% url 'transaction_delete' transaction.id %}">Delete Transaction</a></td>
         </tr>
         {% endfor %}
     </tbody>
@@ -25,8 +25,5 @@
 <a href="{% url 'bookings' %}">Back to bookings</a>
 
 
-<script>
-    
-</script>
-</div>
+
 {% endblock %}
