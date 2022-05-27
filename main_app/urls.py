@@ -18,7 +18,7 @@ from . import views
 
 urlpatterns = [
     # Main page routes
-    path('', views.home, name='home'),
+    path('', views.bookings, name='bookings'),
     path('accounts/signup/', views.signup, name='signup'),
     # Bookings routes
     path('bookings/', views.bookings, name='bookings'),
@@ -45,5 +45,5 @@ urlpatterns = [
     path('transaction/<int:pk>/update/', views.TransactionUpdate.as_view(), name='transaction_update'),
     path('transaction/<int:pk>/delete/', views.TransactionDelete.as_view(), name='transaction_delete'),
     # Profile route
-    path('profile/', views.profile, name='profile'),
+    path('profile/<int:pk>/', views.ProfileUpdate.as_view(), name='profile'),
 ]

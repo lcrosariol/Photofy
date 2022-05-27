@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Meet our Photographers</h1>
+<h1>Meet our photographers</h1>
 <hr />
+<div id="photographers-wrapper">
         {% for user in users.all %}
-        <section id="scroll">
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center">
-                    <div class="col-lg-6 order-lg-2">
+
+                    <div class="profile-wrapper shadow-sm border-0 rounded">
                         <a href="{% url 'portfolio' user.id %}">
-                        <div class="p-5"><lottie-player 
+                        <div class="p-1 ">
+                            <div class="card-body p-2">
+                            <lottie-player 
                             src="../static/images/profile.json"
                             background="transparent"
                             speed="1"
@@ -18,18 +19,36 @@
                             autoplay>
                             </lottie-player></div>
                         </a>
-                    </div>
-                    <div class="col-lg-6 order-lg-1">
-                        <div class="p-5">
-                            <h2 class="display-4">{{ user }}</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
-                        </div>
-                    </div>
+                        <div class="info-div">
+                            <hr />
+                            <h5 class="mb-0" style="text-align: center">{{ user|capfirst }}</h5>
+                            
+                            <hr />
+                            <p class="text-muted m-0">Joined: <span class="info-span">{{ user.profile.created_at|date:'d/m/Y' }}</span></p>
+                            <p class="text-muted m-0">Equipments: <span class="info-span">{{user.profile.equipments.all.count}}</span></p>
+                            <p class="text-muted m-0">Total Bookings: <span class="info-span">{{user.bookings.all.count}}</span></p>
+                            <p class="text-muted m-0">Portfolio Photos: <span class="info-span">{{user.photos.all.count}}</span></p>
+                            <hr />
+                            <ul class="social mb-0 list-inline mt-3">
+                                {% if user.profile.email %}
+                                <li class="list-inline-item m-0"><a href="mailto:{{user.profile.email}}" class="social-link"><i class="fa fa-envelope"></i></a></li>
+                                {% endif %}
+                                {% if user.profile.facebook %}
+                                <li class="list-inline-item m-0"><a href="{{user.profile.facebook}}" target="_blank" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+                                {% endif %}
+                                {% if user.profile.linkedin %}
+                                <li class="list-inline-item m-0"><a href="{{user.profile.linkedin}}" target="_blank"  class="social-link"><i class="fa fa-instagram"></i></a></li>
+                                {% endif %}
+                                {% if user.profile.instagram %}
+                                <li class="list-inline-item m-0"><a href="{{user.profile.instagram}}" target="_blank"  class="social-link"><i class="fa fa-linkedin"></i></a></li>
+                                {% endif %}
+                            </ul>
+                          </div>
+                    </div> 
                 </div>
-            </div>
-        </section>
 
-        {% endfor %}
-</div>
+
+        {% endfor %} 
+    </div>
 
 {% endblock %}

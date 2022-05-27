@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import environ
-import django_on_heroku
+
 
 from pathlib import Path
 
@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'main_app',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admindocs',
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -87,7 +90,6 @@ DATABASES = {
         'PORT' : 5432
     }
 }
-
 
 
 # Password validation
@@ -137,5 +139,5 @@ environ.Env()
 environ.Env.read_env()
 
 # Configure Django App for Heroku.
-
+import django_on_heroku
 django_on_heroku.settings(locals())
