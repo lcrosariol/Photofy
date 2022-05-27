@@ -1,11 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-
-{% if user.id == profile_id  %}
-<h1>Welcome to your portfolio</h1>
-{% else %}
-<h1>Welcome to {{ profile_user|capfirst }}'s portfolio</h1>
-{%endif%}
+<div class="box">
+<h3>Welcome to {{ profile_user }}'s Portfolio.</h3>
 <hr />
 
 
@@ -47,5 +43,5 @@
         }
       }
   </script>
-    
+  </div>  
 {% endblock %}

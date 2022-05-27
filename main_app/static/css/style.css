@@ -5,12 +5,23 @@ body{
 main {
     font-family: "Gill Sans Extrabold", sans-serif;
     font-size: 18px;
-    color:
-    #1d1d1d;
+    color:#1a0e24;
 }
 
-#container-main{
-    margin-top: 40px;
+.box {
+    margin: 20px;
+    padding: 10px;
+}
+
+
+#margintop {
+    margin-top: 20vmin;
+    margin-bottom: 20vmin;
+    height: 70vmin;
+    width: 70vw;
+    border: 5px solid #1a0e24;
+    border-radius: 5px;
+    background-color: rgba(173, 110, 62, 0.335);
 }
 
 .initial-class{
@@ -40,32 +51,26 @@ main {
     font-weight: bold;
     font-size: 2.5em !important;
     color:rgb(255, 181, 95)!important;
-    text-shadow: 2px 2px 2px 
-
-#1d1d1d;
+    text-shadow: 2px 2px 2px #1a0e24;
 }
 
 .navbar{
-    -webkit-box-shadow: 0px 7px 23px 5px 
-    #1d1d1d; 
-    box-shadow: 0px 7px 23px 5px 
-    #1d1d1d;
+    -webkit-box-shadow: 0px 7px 23px 5px #1a0e24; 
+    box-shadow: 0px 7px 23px 5px #1a0e24;
     font-family: 'Delius Unicase', cursive;
     border-radius: 0 0 10px 10px;
 }
 
 .navbar-brand:hover{
-    text-shadow: 0px 6px 12px 
-    #1d1d1d;
+    text-shadow: 0px 6px 12px #1a0e24;
     transition: text-shadow 0.3s ease-in-out;
 
 }
 
 
 .navbar .navbar-nav .nav-link:hover {
-    background-color: #ffe79d;
-    color: 
-    #1d1d1d;
+    background-color: #b1723d;
+    color: #1a0e24;
     border-radius: 5px;
 }  
 
@@ -85,6 +90,18 @@ main {
 .navbar-brand:not(:hover){
     transition: text-shadow 0.3s ease-in-out;
 }
+
+
+.p-1 {
+    height: 10vh;
+    width: 10vw;
+}
+
+.card-body p-2 {
+    margin: 20vw;
+
+}
+
 
 .lottie-wrapper{
     position: relative;

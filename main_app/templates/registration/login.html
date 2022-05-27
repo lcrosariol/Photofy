@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %} 
 {% block content %}
-
+<div class="box">
 <h1>Log In</h1>
 
 <form method="post" action="{% url 'login' %}">
@@ -11,8 +11,6 @@
   <input type="hidden" name="next" value="{{ next }}">
  
 </form>
-
-
-
+</div>
 {% endblock %}
 

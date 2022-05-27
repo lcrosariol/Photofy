@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %} 
 {% block content %}
-
-<h1>Add New Transaction</h1>
-<hr/>
+<div class="box">
   <!-- Leaving the action empty makes the form post to the same url used to display it -->
-  <form action="" method="post">
+  <form class="box" action="" method="post">
     <!-- Django requires the following for security purposes -->
     {% csrf_token %}
     <table>
@@ -14,10 +12,5 @@
     </table>
     <input type="submit" value="Save" class="btn btn-primary save-btn">
   </form>
-
-
-
-
-  
-
+</div>
 {% endblock %}

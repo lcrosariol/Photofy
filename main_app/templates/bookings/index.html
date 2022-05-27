@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div class="box">
 <h1>Bookings</h1>
 <hr/>
     {% for booking in bookings  %}
@@ -11,5 +11,5 @@
         {% endif %}
     {% endfor %}
     <a href="{% url 'booking_create' %}">New Booking</a>
-
+</div>
 {% endblock %}
