@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div class="box">
 <h1>Log In</h1>
 
 <form method="post" action="{% url 'login' %}">
@@ -11,6 +11,6 @@
   <!-- hidden button goes to server and takes us to the location we want if the
 authentication is successful -->
 </form>
-
+</div>
 {% endblock %}
 

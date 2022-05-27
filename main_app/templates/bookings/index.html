@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div class="box">
 <h1>Bookings</h1>
     {% for booking in bookings  %}
         {% if booking.date > today %}
@@ -10,5 +10,5 @@
         {% endif %}
     {% endfor %}
     <a href="{% url 'booking_create' %}">New Booking</a>
-
+</div>
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="box">
   <!-- Leaving the action empty makes the form post to the same url used to display it -->
   <form action="" method="post">
     <!-- Django requires the following for security purposes -->
@@ -12,6 +13,6 @@
     <input type="submit" value="Submit!" class="btn">
     <input type="hidden" name="user" value="{{ user }}">
   </form>
-
+</div>
 
 {% endblock %}
