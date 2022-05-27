@@ -46,7 +46,6 @@ class Equipment(models.Model):
         return reverse('equipment')
 
 
-
 class Profile(models.Model):
     """
     User model extended by making Profile model. Related to :model:`auth.User`
@@ -55,6 +54,13 @@ class Profile(models.Model):
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     equipments = models.ManyToManyField(Equipment, blank=True)
+    
+    email = models.EmailField(max_length=254, null=True, blank=True)
+    facebook = models.URLField(max_length = 250, null=True, blank=True)
+    linkedin = models.URLField(max_length = 250, null=True, blank=True)
+    twitter = models.URLField(max_length = 250, null=True, blank=True)
+    instagram = models.URLField(max_length = 250, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.user.username
@@ -85,7 +91,7 @@ class Photo(models.Model):
     description = models.TextField(blank=True, null=True)
     # on_delete refers to User model
     name = models.CharField(max_length=80)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='photos')
 
     created_at = models.DateTimeField(auto_now_add=True)
     
@@ -110,7 +116,7 @@ class Booking(models.Model):
     customer_name = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=15)
     comment = models.CharField(max_length=200)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings')
     
     def __str__(self):
         return f"{self.location} on {self.date}"

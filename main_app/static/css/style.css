@@ -88,6 +88,7 @@ main {
 }
 
 .navbar-light .navbar-nav .nav-link {
+  white-space: nowrap;
     font-size:20px;
     color:#b7a08e;
 }
@@ -146,16 +147,62 @@ main {
 .lottie-wrapper{
     position: relative;
 }
+#photographers-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.profile-wrapper{
+    width: 250px !important;
+    margin: 23px !important;
+    background-color: whitesmoke;
+    
+}
 
 @media only screen and (min-width: 992px) {
-    .navbar {
-        padding: 0;
-    }
-    .navbar .navbar-nav .nav-link {
-        padding: 1em 0.7em;
-        opacity: 70%;
-    }
-    .navbar .navbar-brand {
-        padding: 0 0.8em;
-    }
+  .navbar {
+    padding: 0;
+  }
+  .navbar .navbar-nav .nav-link {
+    padding: 1em 0.7em;
+  }
+  .navbar .navbar-brand {
+    padding: 0 0.8em;
+  }
 }
+
+.info-div{
+  padding : 0 20px 20px 30px;
+}
+ 
+.social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+  }
+  
+.social-link:hover,
+.social-link:focus {
+    background: #ddd;
+    text-decoration: none;
+    color: #555;
+  }
+  
+  .progress {
+    height: 10px;
+  }
+  
+.info-span{
+  color:black;
+  float:right;
+}
+
+
