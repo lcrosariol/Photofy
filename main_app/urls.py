@@ -18,7 +18,7 @@ from . import views
 
 urlpatterns = [
     # Main page routes
-    path('', views.home, name='home'),
+    path('', views.bookings, name='bookings'),
     path('accounts/signup/', views.signup, name='signup'),
     # Bookings routes
     path('bookings/', views.bookings, name='bookings'),
