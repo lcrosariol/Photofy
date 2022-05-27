@@ -1,7 +1,36 @@
 body{
+    background-image: url('https://i.imgur.com/8ivWzZ1.jpg');
+}
+
+main {
+    font-family: 'Patrick Hand SC', cursive;
+    font-size: 18px;
+    color:
+#1a0e24;
+}
+
+
+
+#bk {
     font-family: 'Roboto', sans-serif;
     background-color: rgb(222, 222, 222)
+
 }
+
+#margintop {
+    margin-top: 20vmin;
+    margin-bottom: 20vmin;
+    height: 70vmin;
+    width: 70vw;
+
+#margintop {
+    margin-top: 20vmin;
+    border: 5px solid 
+#1a0e24;
+    border-radius: 5px;
+    background-color: rgba(173, 110, 62, 0.335);
+}
+
 #videoElement { 
     position: fixed;
     top: 50%;
@@ -18,7 +47,8 @@ body{
 }
 
 #container > #videoElement {
-    border: 5px solid black;
+    border: 5px solid 
+#1a0e24;
     /* width: 50%;
     height: 50%; */
 }
@@ -39,6 +69,9 @@ body{
     /* -webkit-transform-origin: 50% 50%; */
 
 }
+
+
+
 .initial-class{
     position : initial;
 }
@@ -57,41 +90,54 @@ body{
 .navbar-light .navbar-nav .nav-link {
   white-space: nowrap;
     font-size:20px;
-    color:rgb(255, 241, 176);
+    color:#b7a08e;
 }
 
 
 .navbar-brand{
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 2.5em !important;
     color:rgb(255, 181, 95)!important;
-    text-shadow: 2px 2px 2px #573209;
+    text-shadow: 2px 2px 2px 
+
+#1a0e24;
 }
 
 .navbar{
-    -webkit-box-shadow: 0px 7px 23px 5px #000000; 
-    box-shadow: 0px 7px 23px 5px #000000;
+    -webkit-box-shadow: 0px 7px 23px 5px 
+#1a0e24; 
+    box-shadow: 0px 7px 23px 5px 
+#1a0e24;
+    font-family: 'Delius Unicase', cursive;
+    border-radius: 0 0 10px 10px;
 }
 
 .navbar-brand:hover{
-    text-shadow: 0px 6px 12px #000000;
+    text-shadow: 0px 6px 12px 
+#1a0e24;
     transition: text-shadow 0.3s ease-in-out;
+
 }
 
 
 .navbar .navbar-nav .nav-link:hover {
-    background-color: rgb(255, 241, 176);
-    color: #000000;
-  }  
+    background-color: #b1723d;
+    color: 
+#1a0e24;
+    border-radius: 5px;
+}  
+
 .navbar .navbar-nav .nav-link {
-  padding: 0.6em;
-  font-size: 1.2em;
-  transition: all 0.5s;
+    padding: 0.6em;
+    font-size: 1.2em;
+    transition: all 0.5s;
 }
+
 .navbar .navbar-brand {
-  padding: 0 0.6em;
-  font-size: 1.5em;
-  font-weight: bold;
+    padding: 0 0.6em;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 .navbar-brand:not(:hover){
