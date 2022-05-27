@@ -2,13 +2,12 @@
 {% block content %}
 <div class="box">
 <h1>Transactions</h1>
-
 <table class="striped">
     <thead>
         <tr class="box"><th>Date</th><th>Payment Method</th><th>Amount</th><th class="box">Booking</th><th>Update</th><th>Delete</th><th>Total Sale</th></tr>
     </thead>
     <tbody>
-        {% for transaction in transactions %}
+        {% for transaction in transaction %}
             <tr>
                 <td class="box">{{transaction.date}}</td>
                 <td class="box">{{transaction.get_payment_method_display}}</td>
@@ -19,10 +18,12 @@
                 <td class="box">{{ transaction.total_sale }}</td>
         </tr>
         {% endfor %}
-                
     </tbody>
 </table>
-<a href="{% url 'transaction_create' %}">New Transaction</a>
+<div>Total Amount Earned: ${{transaction_total}}</div>
+
+<a href="{% url 'bookings' %}">Back to bookings</a>
+
 
 <script>
     

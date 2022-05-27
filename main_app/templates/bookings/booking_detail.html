@@ -16,11 +16,13 @@
             {% if no_transaction == False %}
                 <a href="{% url 'transaction_create' %}">Link Transaction</a>
             {% else %}
-                <p>Transaction: {{ no_transaction }} </p>
+                <p>Transaction: ${{ booking.transaction.amount }} <a href="{% url 'transaction_update' booking.transaction.id %}">Update Transaction</a>
+                    <a href="{% url 'transaction_delete' booking.transaction.id %}">Delete Transaction</a></p>
             {% endif %}
+            
         </div>
-        <a href="{% url 'booking_update' booking.id %}" >Update</a>
-        <a href="{% url 'booking_delete' booking.id %}" >Delete</a>
+        <a href="{% url 'booking_update' booking.id %}" >Update Booking</a>
+        <a href="{% url 'booking_delete' booking.id %}" >Delete Booking</a>
     </div>
 </a>
 </div>

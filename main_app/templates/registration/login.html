@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %} 
 {% block content %}
 <div class="box">
 <h1>Log In</h1>
 
 <form method="post" action="{% url 'login' %}">
   {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" class="btn" value="login">
+  {{ form|crispy  }}
+  <input type="submit" value="Login" class="btn btn-primary save-btn" login>
   <input type="hidden" name="next" value="{{ next }}">
-  <!-- hidden button goes to server and takes us to the location we want if the
-authentication is successful -->
+ 
 </form>
 </div>
 {% endblock %}
