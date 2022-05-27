@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="box">
+{% load crispy_forms_tags %} 
+<h1>Add New Booking</h1>
+<hr/>
   <!-- Leaving the action empty makes the form post to the same url used to display it -->
   <form action="" method="post">
     <!-- Django requires the following for security purposes -->
@@ -13,6 +15,6 @@
     <input type="submit" value="Save" class="btn btn-primary save-btn">
     <input type="hidden" name="user" value="{{ user }}">
   </form>
-</div>
+
 
 {% endblock %}

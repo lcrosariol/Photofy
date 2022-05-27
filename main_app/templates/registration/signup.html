@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %} 
 {% block content %}
-<div class="box">
+
 <h1>Sign Up</h1>
 
 {% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
@@ -11,5 +11,5 @@
   {{ form|crispy  }}
   <input type="submit" class="btn" value="signup">
 </form>
-</div>
+
 {% endblock %}
