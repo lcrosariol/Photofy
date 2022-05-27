@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h3>Welcome to {{ profile_user }}'s Portfolio.</h3>
+{% if user.id == profile_id  %}
+<h1>Welcome to your portfolio</h1>
+{% else %}
+<h1>Welcome to {{ profile_user|capfirst }}'s portfolio</h1>
+{%endif%}
 <hr />
+
 
 {% if user.is_authenticated and user.id == profile_id  %}
     <form action="{% url 'add_photo' user.id %}" enctype="multipart/form-data" method="POST" class="card-panel">

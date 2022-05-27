@@ -1,3 +1,4 @@
+from functools import total_ordering
 import os
 from re import L
 import uuid
@@ -14,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from .forms import EquipmentForm
+from django.db.models import Sum
 # Create your views here.
 
 
@@ -76,21 +78,6 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 
-@login_required
-def home(request):
-    """
-    **Template**
-
-    :template:`main_app/home.html`
-
-    **URL**
-
-    http://localhost:8000/
-
-    """
-    return render(request, 'home.html')
-
-
 def photographers(request):
     """
     Displays all photographers on application. 
@@ -108,8 +95,6 @@ def photographers(request):
     http://localhost/8000/photographers/
 
     """
-    # profiles = Profile.objects.all()
-
     users = User.objects.all()
     return render(request, 'photographers.html', {'users': users})
 
@@ -154,10 +139,8 @@ def equipment(request):
     http://localhost/8000/equipment/
 
     """
-    print('HELLO', request.user.profile.id)
     assoc_equipments = Equipment.objects.filter(profile=request.user.profile.id)
     gear_user_doesnt_have = Equipment.objects.exclude(id__in = assoc_equipments.all().values_list('id'))
-    print(assoc_equipments)
     return render(request, 'equipment.html',  {'equipments': gear_user_doesnt_have, 'assoc_equipments': assoc_equipments})
 
 
@@ -205,16 +188,11 @@ def booking(request, booking_id):
 
     try:
         booking.transaction
-        print(booking.transaction)
         no_transaction = True
         return render(request, 'bookings/booking_detail.html', {'booking': booking, 'today': today, 'no_transaction': no_transaction})
     except:
-        print('!!!!!!!!!!!!!!booking does not exist')
         no_transaction = False
         return render(request, 'bookings/booking_detail.html', {'booking': booking, 'today': today, 'no_transaction': no_transaction})
-
-
-    
 
 
 @login_required
@@ -239,8 +217,11 @@ def transactions(request):
     """
     bookings = Booking.objects.filter(user=request.user)
     bookings_list = list(bookings)
-    transactions = Transaction.objects.filter(booking__in=bookings_list)
-    return render(request, 'transactions.html', {'transactions': transactions})
+    transaction = Transaction.objects.filter(booking__in=bookings_list)
+    transaction_total = transaction.aggregate(Sum('amount')).get('amount__sum',0.00) if transaction else 0
+    print(transaction_total)
+    return render(request, 'transactions.html', {'transaction': transaction, 'transaction_total': transaction_total})
+
 
 
 @login_required
@@ -252,34 +233,11 @@ def profile(request):
 
 @login_required
 def assoc_equipment(request, equipment_id):
-  """
-  Grabs and displays all the equipment connected to the photographer
-
-  ``Models Related``
-
-  Profile: :model:`main_app.Profile`
-
-  Equipment:model:`main_app.Equipment`
-
-  """
-  print('!!!!_------!!!!-----THIS', request.user.profile.id, equipment_id)
-  print(request.user.profile.equipments)
   Profile(id=request.user.profile.id).equipments.add(equipment_id)
   return redirect('equipment')
 
 @login_required
 def unassoc_equipment(request, equipment_id):
-  """
-  Grabs and displays all the equipment not belonging to the photographer
-
-  ``Models Related``
-
-  Profile: :model:`main_app.Profile`
-
-  Equipment:model:`main_app.Equipment`
-
-  """
-  print('!!!!_------!!!!-----THIS', request.user.profile.id, equipment_id)
   Profile(id=request.user.profile.id).equipments.remove(equipment_id)
   return redirect('equipment')
 
@@ -287,8 +245,6 @@ class TransactionCreate(LoginRequiredMixin, CreateView):
     model = Transaction
     fields = '__all__'
     
-
-
 
 class TransactionUpdate(LoginRequiredMixin, UpdateView):
     model = Transaction
@@ -309,7 +265,6 @@ class EquipmentCreate(LoginRequiredMixin, CreateView):
     model = Equipment
     form_class = EquipmentForm
     success_url = '/equipment/'
-
 
 
 class EquipmentUpdate(LoginRequiredMixin, UpdateView):
@@ -341,3 +296,8 @@ class BookingUpdate(LoginRequiredMixin, UpdateView):
 class BookingDelete(LoginRequiredMixin, DeleteView):
     model = Booking
     success_url = '/bookings/'
+
+class ProfileUpdate(LoginRequiredMixin, UpdateView):
+    model = Profile
+    fields = ['email', 'facebook', 'linkedin', 'twitter', 'instagram']
+    success_url = '/photographers/' 
