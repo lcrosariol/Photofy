@@ -14,7 +14,7 @@
       {% csrf_token %}
       <input type="file" name="photo-file">
       <br><br>
-      <input type="submit" class="btn" value="Upload Photo">
+      <input type="submit" class="btn save-btn" value="Upload Photo">
     </form>
     {% endif %}
 
@@ -23,7 +23,7 @@
 {% for photo in photos.all %}
       <div class="col-md-4">
         <div class="thumbnail">
-            <img src="{{photo.url}}" alt="Lights" class="initial-class" style="width:100%; margin:15px; border-radius:10px" onclick="enlargeImg(this)">
+            <img src="{{ photo.url }}" alt="Lights" class="initial-class" style="width:100%; margin:15px; border-radius:10px" onclick="enlargeImg(this)">
         </div>
       </div>
 

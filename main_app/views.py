@@ -299,5 +299,5 @@ class BookingDelete(LoginRequiredMixin, DeleteView):
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
     model = Profile
-    fields = ['email', 'facebook', 'linkedin', 'twitter', 'instagram']
+    fields = ['name', 'email', 'facebook', 'linkedin', 'instagram']
     success_url = '/photographers/' 

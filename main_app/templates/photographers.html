@@ -5,7 +5,6 @@
 <hr />
 <div id="photographers-wrapper">
         {% for user in users.all %}
-
                     <div class="profile-wrapper shadow-sm border-0 rounded">
                         <a href="{% url 'portfolio' user.id %}">
                         <div class="p-1 ">
@@ -21,8 +20,11 @@
                         </a>
                         <div class="info-div">
                             <hr />
+                            {% if user.profile.name %}
+                            <h5 class="mb-0" style="text-align: center">{{ user.profile.name|capfirst }}</h5>
+                            {% else %}
                             <h5 class="mb-0" style="text-align: center">{{ user|capfirst }}</h5>
-                            
+                            {% endif %}
                             <hr />
                             <p class="text-muted m-0">Joined: <span class="info-span">{{ user.profile.created_at|date:'d/m/Y' }}</span></p>
                             <p class="text-muted m-0">Equipments: <span class="info-span">{{user.profile.equipments.all.count}}</span></p>
@@ -37,10 +39,10 @@
                                 <li class="list-inline-item m-0"><a href="{{user.profile.facebook}}" target="_blank" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
                                 {% endif %}
                                 {% if user.profile.linkedin %}
-                                <li class="list-inline-item m-0"><a href="{{user.profile.linkedin}}" target="_blank"  class="social-link"><i class="fa fa-instagram"></i></a></li>
+                                <li class="list-inline-item m-0"><a href="{{user.profile.linkedin}}" target="_blank"  class="social-link"><i class="fa fa-linkedin"></i></a></li>
                                 {% endif %}
                                 {% if user.profile.instagram %}
-                                <li class="list-inline-item m-0"><a href="{{user.profile.instagram}}" target="_blank"  class="social-link"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="list-inline-item m-0"><a href="{{user.profile.instagram}}" target="_blank"  class="social-link"><i class="fa fa-instagram"></i></a></li>
                                 {% endif %}
                             </ul>
                           </div>

@@ -55,10 +55,10 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     equipments = models.ManyToManyField(Equipment, blank=True)
     
+    name = models.CharField(max_length=40, blank=True)
     email = models.EmailField(max_length=254, null=True, blank=True)
     facebook = models.URLField(max_length = 250, null=True, blank=True)
     linkedin = models.URLField(max_length = 250, null=True, blank=True)
-    twitter = models.URLField(max_length = 250, null=True, blank=True)
     instagram = models.URLField(max_length = 250, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
