@@ -9,12 +9,9 @@ main {
 #1a0e24;
 }
 
+
 #margintop {
-    height: 70vh;
-    width: 70vw;
-    margin-top: 10vh;
-    margin-left: 0 auto;
-    padding: 10vmin;
+    margin-top: 20vmin;
     border: 5px solid 
 #1a0e24;
     border-radius: 5px;
@@ -60,10 +57,7 @@ main {
 
 }
 
-/* .th {
-    margin: 50px;
 
-} */
 
 .initial-class{
     position : initial;

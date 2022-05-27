@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Meet our Photographers</h1>
+<h1>Meet Our Photographers</h1>
 <hr />
+<div id="photographers-wrapper">
         {% for user in users.all %}
-        <section id="scroll">
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center">
-                    <div class="col-lg-6 order-lg-2">
+
+                    <div class="profile-wrapper shadow-sm border-0 rounded">
                         <a href="{% url 'portfolio' user.id %}">
-                        <div class="p-5"><lottie-player 
+                        <div class="p-1 ">
+                            <div class="card-body p-2">
+                            <lottie-player 
                             src="../static/images/profile.json"
                             background="transparent"
                             speed="1"
@@ -18,18 +19,21 @@
                             autoplay>
                             </lottie-player></div>
                         </a>
-                    </div>
-                    <div class="col-lg-6 order-lg-1">
-                        <div class="p-5">
-                            <h2 class="display-4">{{ user }}</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
-                        </div>
-                    </div>
+                        <div class="p-4">
+                            <h5 class="mb-0">{{ user }}</h5>
+                            <p class="small text-muted">Photographer</p>
+                            <ul class="social mb-0 list-inline mt-3">
+                              <li class="list-inline-item m-0"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+                              <li class="list-inline-item m-0"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
+                              <li class="list-inline-item m-0"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
+                              <li class="list-inline-item m-0"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                          </div>
+                    </div> 
                 </div>
-            </div>
-        </section>
 
-        {% endfor %}
-</div>
+
+        {% endfor %} 
+    </div>
 
 {% endblock %}
