@@ -12,6 +12,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import EquipmentForm
 from django.db.models import Sum
 # Create your views here.
@@ -160,7 +161,20 @@ def portfolio(request, profile_id):
     """
     profile_user = User.objects.get(id=profile_id)
     photos = Photo.objects.filter(user=profile_id).order_by('-created_at')
-    return render(request, 'portfolio.html', {'photos': photos, 'profile_id': profile_id, "profile_user":profile_user})
+    
+    page = request.GET.get('page', 1)
+    paginator = Paginator(photos, 3)
+    try:
+        photos = paginator.page(page)
+    except PageNotAnInteger:
+        photos = paginator.page(1)
+    except EmptyPage:
+        photos = paginator.page(paginator.num_pages)
+    
+    print(photos[0])
+    
+    
+    return render(request, 'portfolio.html', {'photos':photos, 'profile_id': profile_id, "profile_user":profile_user})
 
 
 @login_required
@@ -297,5 +311,5 @@ class BookingDelete(LoginRequiredMixin, DeleteView):
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
     model = Profile
-    fields = ['email', 'facebook', 'linkedin', 'twitter', 'instagram']
+    fields = ['name', 'email', 'facebook', 'linkedin', 'instagram']
     success_url = '/photographers/' 
