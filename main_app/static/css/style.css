@@ -55,6 +55,7 @@ body{
 }
 
 .navbar-light .navbar-nav .nav-link {
+  white-space: nowrap;
     font-size:20px;
     color:rgb(255, 241, 176);
 }
@@ -107,7 +108,7 @@ body{
 }
 
 .profile-wrapper{
-    width: 200px !important;
+    width: 250px !important;
     margin: 23px !important;
     background-color: whitesmoke;
     
@@ -125,6 +126,9 @@ body{
   }
 }
 
+.info-div{
+  padding : 0 20px 20px 30px;
+}
  
 .social-link {
     width: 30px;
@@ -150,6 +154,9 @@ body{
     height: 10px;
   }
   
-
+.info-span{
+  color:black;
+  float:right;
+}
 
 

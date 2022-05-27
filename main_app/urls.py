@@ -44,5 +44,5 @@ urlpatterns = [
     path('transaction/<int:pk>/update/', views.TransactionUpdate.as_view(), name='transaction_update'),
     path('transaction/<int:pk>/delete/', views.TransactionDelete.as_view(), name='transaction_delete'),
     # Profile route
-    path('profile/', views.profile, name='profile'),
+    path('profile/<int:pk>/', views.ProfileUpdate.as_view(), name='profile'),
 ]

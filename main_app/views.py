@@ -68,8 +68,6 @@ def photographers(request):
     photographers view
     http://localhost/8000/photographers/
     """
-    # profiles = Profile.objects.all()
-
     users = User.objects.all()
     return render(request, 'photographers.html', {'users': users})
 
@@ -89,10 +87,8 @@ def equipment(request):
     """
     http://localhost/8000/equipment/
     """
-    print('HELLO', request.user.profile.id)
     assoc_equipments = Equipment.objects.filter(profile=request.user.profile.id)
     gear_user_doesnt_have = Equipment.objects.exclude(id__in = assoc_equipments.all().values_list('id'))
-    print(assoc_equipments)
     return render(request, 'equipment.html',  {'equipments': gear_user_doesnt_have, 'assoc_equipments': assoc_equipments})
 
 
@@ -117,16 +113,11 @@ def booking(request, booking_id):
 
     try:
         booking.transaction
-        print(booking.transaction)
         no_transaction = True
         return render(request, 'bookings/booking_detail.html', {'booking': booking, 'today': today, 'no_transaction': no_transaction})
     except:
-        print('!!!!!!!!!!!!!!booking does not exist')
         no_transaction = False
         return render(request, 'bookings/booking_detail.html', {'booking': booking, 'today': today, 'no_transaction': no_transaction})
-
-
-    
 
 
 @login_required
@@ -150,14 +141,11 @@ def profile(request):
 
 @login_required
 def assoc_equipment(request, equipment_id):
-  print('!!!!_------!!!!-----THIS', request.user.profile.id, equipment_id)
-  print(request.user.profile.equipments)
   Profile(id=request.user.profile.id).equipments.add(equipment_id)
   return redirect('equipment')
 
 @login_required
 def unassoc_equipment(request, equipment_id):
-  print('!!!!_------!!!!-----THIS', request.user.profile.id, equipment_id)
   Profile(id=request.user.profile.id).equipments.remove(equipment_id)
   return redirect('equipment')
 
@@ -219,3 +207,8 @@ class BookingUpdate(LoginRequiredMixin, UpdateView):
 class BookingDelete(LoginRequiredMixin, DeleteView):
     model = Booking
     success_url = '/bookings/'
+
+class ProfileUpdate(LoginRequiredMixin, UpdateView):
+    model = Profile
+    fields = ['email', 'facebook', 'linkedin', 'twitter', 'instagram']
+    success_url = '/photographers/' 
