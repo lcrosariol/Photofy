@@ -147,3 +147,23 @@ main {
 }
 
 
+#id_email, 
+#id_facebook, 
+#id_linkedin, 
+#id_twitter, 
+#id_instagram,
+#id_model{
+    width:400px;
+}
+
+#equipment-form{
+    width:600px;
+}
+
+.save-btn-wrapper{
+    display:flex;
+}
+
+.save-btn{
+    margin-top: 10px;
+}
