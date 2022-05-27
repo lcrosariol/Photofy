@@ -2,11 +2,9 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row justify-content-around">
-        <div class="col-2">
-            <a href="{% url 'equipment_create' %}"><i class="fas fa-circle-plus"></i>Add Equipment</a>
-        </div>
+
         <div class="col-4">
-            <h1>Equipment</h1>
+            <h1>My Equipment</h1>
             {% if assoc_equipments.count %}
                 {% for assoc_equipment in assoc_equipments %}
                     <div> 
@@ -17,15 +15,17 @@
                     </div>
                 {% endfor %}
             {% else %}
-                <h5>Get started by adding equipment from the list, or <a href="{% url 'equipment_create' %}">add your own</a></h5>
+                <h5>You don't have any equipment!</a></h5>
             {% endif %}
         </div>
-    
 
-    
         <div class="col-4">
             <h1>Available Equipment</h1>
+            <div class="col-6">
+                <a href="{% url 'equipment_create' %}"><i class="fas fa-circle-plus"></i>Add Equipment</a>
+            </div>
             {% if equipments.count %}
+            <p>Click to add to your equipment list</p>
                 {% for equipment in equipments %}
                     <div>
                         <form action="{% url 'assoc_equipment' equipment.id %}" method="post">
@@ -34,8 +34,6 @@
                         </form>
                     </div>
                 {% endfor %}
-            {% else %}
-                <h5><a href="{% url 'equipment_create' %}"><i class="fas fa-circle-plus"></i>Add Equipment</a></h5>
             {% endif %}
         </div>
     </div>
