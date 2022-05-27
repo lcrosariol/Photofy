@@ -3,26 +3,44 @@
 
 <h1>Transactions</h1>
 <hr/>
-<table class="striped">
-    <thead>
-        <tr class="th"><th>Date</th><th>Payment Method</th><th>Amount</th></tr>
-    </thead>
-    <tbody>
-        {% for transaction in transaction %}
-            <tr>
-                <td>{{transaction.date}}</td>
-                <td>{{transaction.get_payment_method_display}}</td>
-                <td>{{transaction.amount}}</td>
-                <td>{{transaction.booking}}</td>
-                <td><a href="{% url 'transaction_update' transaction.id %}">Update Transaction</a></td>
-                <td><a href="{% url 'transaction_delete' transaction.id %}">Delete Transaction</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<div>Total Amount Earned: ${{transaction_total}}</div>
+<div class="col grid-margin stretch-card">
+    <div class="card" id="transaction-card">
+        <div class="card-body">
+            <h4 class="card-title"></h4>
+            <div class="table-responsive">
+                <table class="table" id="transaction-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Payment</th>
+                            <th>Amount</th>
+                            <th>Booking Info</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in transaction %}
+                            <tr>
+                                <td>{{transaction.date}}</td>
+                                <td>{{transaction.get_payment_method_display}}</td>
+                                <td>{{transaction.amount}}</td>
+                                <td>{{transaction.booking}}</td>
+                                <td><a href="{% url 'transaction_update' transaction.id %}" class="transaction-icon"><i class='far fa-edit' style='font-size:24px'></i>
+                                </a></td>
+                                <td><a href="{% url 'transaction_delete' transaction.id %}" class="transaction-icon"><i class='far fa-trash-alt' style='font-size:24px'></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div>Total Amount Earned: ${{transaction_total}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<a href="{% url 'bookings' %}" class="btn booking-button"><i class='far fa-caret-square-left' style='font-size:24px'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BACK TO BOOKINGS</a>
 
-<a href="{% url 'bookings' %}">Back to bookings</a>
 
 
 

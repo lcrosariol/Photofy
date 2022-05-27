@@ -3,13 +3,38 @@
 
 <h1>Bookings</h1>
 <hr/>
-    {% for booking in bookings  %}
-        {% if booking.date > today %}
-            <p>Upcoming <a href="{% url 'booking' booking.id %}" >{{ booking.date }} </a></p>
-        {% else %}
-            <p>Previous <a href="{% url 'booking' booking.id %}" class="btn-light" >{{ booking.date }} </a></p>
-        {% endif %}
-    {% endfor %}
-    <a href="{% url 'booking_create' %}">New Booking</a>
-
+<div class="col grid-margin stretch-card">
+    <div class="card" id="booking-card">
+        <div class="card-body">
+            <h4 class="card-title"></h4>
+            <div class="table-responsive" >
+                <table class="table" id="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Booking Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings  %}
+                            {% if booking.date > today %}
+                        <tr id="booking-detail">
+                            <td>Upcoming</td>
+                            <td><a href="{% url 'booking' booking.id %}" class="btn booking-button" role="button">{{ booking }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fas fa-circle-info' style='font-size:24px'></i></a></td>
+                            {% else %}
+                            <td>Previous</td>
+                            <td><a href="{% url 'booking' booking.id %}" class="btn ex-booking-button" role="button">{{ booking }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class='fas fa-circle-info' style='font-size:24px'></i> </a></td>
+                            
+                            {% endif %}
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>   
+<hr>
+<a href="{% url 'booking_create' %}" class="btn booking-button">NEW BOOKING &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-circle-plus" style='font-size:24px'></i></a>
 {% endblock %}

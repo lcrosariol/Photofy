@@ -1,6 +1,4 @@
-from functools import total_ordering
 import os
-from re import L
 import uuid
 import boto3
 from datetime import date
