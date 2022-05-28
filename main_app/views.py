@@ -96,7 +96,7 @@ def photographers(request):
     """
     users = User.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(users, 5)
+    paginator = Paginator(users, 4)
     try:
         users = paginator.page(page)
     except PageNotAnInteger:
@@ -257,9 +257,14 @@ def unassoc_equipment(request, equipment_id):
   Profile(id=request.user.profile.id).equipments.remove(equipment_id)
   return redirect('equipment')
 
+
 class TransactionCreate(LoginRequiredMixin, CreateView):
     model = Transaction
-    fields = '__all__'
+    fields = ['payment_method', 'amount', 'date', 'paid']
+    
+    def form_valid(self, form):
+        form.instance.booking_id = self.kwargs['booking_pk']
+        return super().form_valid(form)
     
 
 class TransactionUpdate(LoginRequiredMixin, UpdateView):

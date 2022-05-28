@@ -41,7 +41,7 @@ urlpatterns = [
     path('photographers/', views.photographers, name='photographers'),
     # Transactions routes
     path('transactions/', views.transactions, name='transactions'),
-    path('transaction/create/', views.TransactionCreate.as_view(), name='transaction_create'),
+    path('transaction/create/<int:booking_pk>/', views.TransactionCreate.as_view(), name='transaction_create'),
     path('transaction/<int:pk>/update/', views.TransactionUpdate.as_view(), name='transaction_update'),
     path('transaction/<int:pk>/delete/', views.TransactionDelete.as_view(), name='transaction_delete'),
     # Profile route

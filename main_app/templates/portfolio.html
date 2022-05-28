@@ -36,21 +36,21 @@
     {% if photos.has_other_pages %}
     <ul class="pagination">
       {% if photos.has_previous %}
-        <li><a href="?page={{ photos.previous_page_number }}">&laquo;</a></li>
+        <li style="margin-left: 12px;"><a href="?page={{ photos.previous_page_number }}">&laquo;</a></li>
       {% else %}
-        <li class="disabled"><span>&laquo;</span></li>
+        <li class="disabled" style="margin-left: 12px;"><span>&laquo;</span></li>
       {% endif %}
       {% for i in photos.paginator.page_range %}
         {% if photos.number == i %}
-          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          <li class="active" style="margin-left: 12px;"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
         {% else %}
-          <li><a href="?page={{ i }}">{{ i }}</a></li>
+          <li style="margin-left: 12px;"><a href="?page={{ i }}">{{ i }}</a></li>
         {% endif %}
       {% endfor %}
       {% if photos.has_next %}
-        <li><a href="?page={{ photos.next_page_number }}">&raquo;</a></li>
+        <li style="margin-left: 12px;"><a href="?page={{ photos.next_page_number }}">&raquo;</a></li>
       {% else %}
-        <li class="disabled"><span>&raquo;</span></li>
+        <li class="disabled" style="margin-left: 12px;"><span>&raquo;</span></li>
       {% endif %}
     </ul>
   {% endif %}
