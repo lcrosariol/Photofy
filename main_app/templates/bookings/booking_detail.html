@@ -14,7 +14,7 @@
             <p>Phone Number: {{ booking.phone_number }}</p>
             <p>Comments: {{ booking.comment }}</p>
             {% if no_transaction == False %}
-                <a href="{% url 'transaction_create' %}">Link Transaction</a>
+                <a href="{% url 'transaction_create' booking.id %}">Link Transaction</a>
             {% else %}
                 <p>Transaction: ${{ booking.transaction.amount }} <a href="{% url 'transaction_update' booking.transaction.id %}">Update Transaction</a>
                     <a href="{% url 'transaction_delete' booking.transaction.id %}">Delete Transaction</a></p>
