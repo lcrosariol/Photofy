@@ -2,13 +2,22 @@
 {% block content %}
 
 {% if user.id == profile_id  %}
-<h1>Welcome to your portfolio</h1>
+<h1 style="display: inline-block;">Welcome to your portfolio</h1>
 {% else %}
-<h1>Welcome to {{ profile_user|capfirst }}'s portfolio</h1>
+<h1 style="display: inline-block;">Welcome to {{ profile_user|capfirst }}'s portfolio</h1>
 {%endif%}
+<lottie-player 
+      src="../../../static/images/portfolio.json"
+      background="transparent"
+      speed="1"
+      style="width: 66px;
+      position: relative;
+      top: 21px;
+      display: inline-block;"
+      loop
+      autoplay>
+      </lottie-player>
 <hr />
-
-
 {% if user.is_authenticated and user.id == profile_id  %}
     <form action="{% url 'add_photo' user.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
       {% csrf_token %}
