@@ -40,8 +40,8 @@ main {
     font-weight: bold;
     font-size: 2.5em !important;
     color:rgb(255, 181, 95)!important;
-    text-shadow: 2px 2px 2px 
-
+    padding-left: 0 !important;
+    text-shadow: 2px 2px 2px
 #1d1d1d;
 }
 
