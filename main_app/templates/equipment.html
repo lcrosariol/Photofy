@@ -10,7 +10,7 @@
                     <div> 
                         <form action="{% url 'unassoc_equipment' assoc_equipment.id %}" method="post">
                             {% csrf_token %}
-                            <a href="{% url 'unassoc_equipment' assoc_equipment.id %}" class="list-group-item list-group-item-action list-group-item">{{ assoc_equipment.get_type_display }} {{ assoc_equipment.model }}</a>
+                            <a href="{% url 'unassoc_equipment' assoc_equipment.id %}" class="list-group-item list-group-item-action my-equip-btn">{{ assoc_equipment.get_type_display }} {{ assoc_equipment.model }}</a>
                         </form>
                     </div>
                 {% endfor %}
@@ -22,15 +22,16 @@
         <div class="col-4">
             <h1>Available Equipment</h1>
             <div class="col-6">
-                <a href="{% url 'equipment_create' %}"><i class="fas fa-circle-plus"></i>Add Equipment</a>
+                <a href="{% url 'equipment_create' %}" class="btn btn-primary" ><i class="fas fa-circle-plus"></i> Add Equipment</a>
             </div>
+            <br>
             {% if equipments.count %}
             <p>Click to add to your equipment list</p>
                 {% for equipment in equipments %}
                     <div>
                         <form action="{% url 'assoc_equipment' equipment.id %}" method="post">
                             {% csrf_token %}
-                            <button class="list-group-item list-group-item-action"> Add {{ equipment.get_type_display}} {{ equipment.model }} to your equipment. </button>
+                            <button class="list-group-item list-group-item-action add-equip-btn"> Add {{ equipment.get_type_display}} {{ equipment.model }} to your equipment. </button>
                         </form>
                     </div>
                 {% endfor %}

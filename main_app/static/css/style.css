@@ -116,13 +116,29 @@ main {
 }
 .btn-warning, .btn-primary{
   background-color: rgba(255, 180, 95, 0.512);
+  border-color: rgba(255, 180, 95, 0.512);
+  box-shadow: 12px 4px 10px
+  #1d1d1d;
+  color: #1d1d1d;
+}
+.btn-primary:hover{
+  background-color:rgb(255, 181, 95);
+  border-color:rgb(255, 181, 95);
 }
 
-.booking-button{
+.booking-button, .update-booking{
   background-color: rgba(255, 180, 95, 0.512);
   box-shadow: 12px 4px 10px
   #1d1d1d;
   width:100% !important;
+}
+.delete-booking{
+  box-shadow: 12px 4px 10px
+  #1d1d1d;
+  width:100% !important;
+  background-color: rgba(221, 221, 221, 0.717);
+  border-color: #1d1d1d;
+  margin-top: 15px;
 }
 .ex-booking-button{
   background-color: #1d1d1d36;
@@ -130,10 +146,68 @@ main {
   #1d1d1d;
   width:100% !important;
 }
-.transaction-icon{
+.transaction-icon, .booking-icon{
   color: rgba(228, 147, 56, 0.861);
 }
-
+.transaction-icon:hover, .booking-icon:hover{
+  color: #1d1d1d;
+}
+.add-equip-btn{
+  background-color: rgba(255, 180, 95, 0.512);
+  color: #1d1d1d;
+  box-shadow: 12px 4px 10px
+  #1d1d1d;
+  border-radius: 5px;
+}
+.add-equip-btn:hover{
+  background-color: rgba(228, 147, 56, 0.861);
+  color: #1d1d1d;
+}
+.my-equip-btn{
+  background-color: rgba(228, 147, 56, 0.861);
+  box-shadow: 0px 4px 10px
+  #1d1d1d;
+  border-radius: 5px;
+}
+.my-equip-btn:hover{
+  background-color: #555;
+  color: whitesmoke;
+}
+.col-md-3.mt-1.time{
+  background-color: rgba(255, 180, 95, 0.512);
+  justify-content: center;
+  color: #1d1d1d;
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px
+  #1d1d1d;
+  max-width: 20%;
+}
+.detail-card{
+  background-color: rgba(85, 85, 85, 0.528);
+  border-radius: 5px;
+  box-shadow: 12px 4px 10px
+  #1d1d1d;
+}
+.expired-booking{
+  color: #555;
+  text-transform: uppercase;
+}
+.btn-outline-dark{
+  box-shadow: 12px 4px 10px
+  #1d1d1d;
+  background-color: rgba(221, 221, 221, 0.717);
+}
+#container-main > div > div > div > div > div.col-md-6.mt-1{
+  justify-content: center;
+  text-align: left;
+}
+.update-delete-trans{
+  width: 80%;
+}
 @media only screen and (min-width: 992px) {
   .navbar {
     padding: 0;
@@ -188,7 +262,9 @@ main {
 .save-btn{
     margin-top: 10px;
     float: right;
-    background-color:rgb(255, 145, 20)!important;
+    background-color:rgb(255, 181, 95)!important;
+    box-shadow: 12px 4px 10px
+  #1d1d1d;
 }
 
 .paginator-wrapper{
