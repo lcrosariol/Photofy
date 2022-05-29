@@ -108,6 +108,11 @@ main {
   background-color: rgba(85, 85, 85, 0.528);
   border-radius: 5px;
 }
+#equip-card{
+  background-color: rgba(221, 221, 221, 0.717);
+  border-radius: 5px;
+}
+
 #transaction-table, #booking-table{
   background-color: rgba(221, 221, 221, 0.717);
   box-shadow: 12px 4px 10px
@@ -125,7 +130,9 @@ main {
   background-color:rgb(255, 181, 95);
   border-color:rgb(255, 181, 95);
 }
-
+.card-body{
+  padding: 20px;
+}
 .booking-button, .update-booking{
   background-color: rgba(255, 180, 95, 0.512);
   box-shadow: 12px 4px 10px
@@ -165,7 +172,8 @@ main {
 }
 .my-equip-btn{
   background-color: rgba(228, 147, 56, 0.861);
-  box-shadow: 0px 4px 10px
+  color: #1d1d1d;
+  box-shadow: 12px 4px 10px
   #1d1d1d;
   border-radius: 5px;
 }
