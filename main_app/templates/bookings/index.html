@@ -23,10 +23,14 @@
                             {% if booking.date > today %}
                         <tr id="booking-detail">
                             <td>Upcoming</td>
-                            <td><a href="{% url 'booking' booking.id %}" class="btn booking-button" role="button">{{ booking }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fas fa-circle-info' style='font-size:24px'></i></a></td>
+                            <td><a href="{% url 'booking' booking.id %}" class="btn booking-button" role="button"><i class='fas fa-circle-info' style='font-size:24px'></i>{{ booking.customer_name }} Is booked on {{ booking.date }} at {{ booking.location }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+                            <td></td>
+                            <td><a href="{% url 'booking_update' booking.id %}" class="booking-icon"><i class='far fa-edit' style='font-size:24px'></i>
+                            </a></td>
+                            <td><a href="{% url 'booking_delete' booking.id %}" class="booking-icon"><i class='far fa-trash-alt' style='font-size:24px'></i></a></td>
                             {% else %}
                             <td>Previous</td>
-                            <td><a href="{% url 'booking' booking.id %}" class="btn ex-booking-button" role="button">{{ booking }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class='fas fa-circle-info' style='font-size:24px'></i> </a></td>
+                            <td><a href="{% url 'booking' booking.id %}" class="btn ex-booking-button" role="button"><i class='fas fa-circle-info' style='font-size:24px'></i>{{ booking.customer_name }} Was booked on {{ booking.date }} at {{ booking.location }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
                             <td></td>
                             <td><a href="{% url 'booking_update' booking.id %}" class="booking-icon"><i class='far fa-edit' style='font-size:24px'></i>
                             </a></td>
