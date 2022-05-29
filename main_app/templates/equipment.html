@@ -14,7 +14,7 @@
                                 <div> 
                                     <form action="{% url 'unassoc_equipment' assoc_equipment.id %}" method="post">
                                         {% csrf_token %}
-                                        <a href="{% url 'unassoc_equipment' assoc_equipment.id %}" class="list-group-item list-group-item-action my-equip-btn">{{ assoc_equipment.get_type_display }} {{ assoc_equipment.model }}</a>
+                                        <a href="{% url 'unassoc_equipment' assoc_equipment.id %}" class="list-group-item list-group-item-action my-equip-btn">{{ assoc_equipment.get_type_display }} {{ assoc_equipment.model }} 	<i class="fa fa-remove" style="float: right"></i></a>
                                     </form>
                                 </div>
                                 <br>
@@ -43,7 +43,7 @@
                                 <div>
                                     <form action="{% url 'assoc_equipment' equipment.id %}" method="post">
                                         {% csrf_token %}
-                                        <button class="list-group-item list-group-item-action add-equip-btn"> Add {{ equipment.get_type_display}} {{ equipment.model }} to your equipment. </button>
+                                        <button class="list-group-item list-group-item-action add-equip-btn"> Add {{ equipment.get_type_display}} {{ equipment.model }} to your equipment. <i class="fas fa-circle-plus" style="float: right"></i> </button>
                                     </form>
                                 </div>
                                 <br>
