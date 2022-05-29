@@ -297,6 +297,8 @@ main {
 	filter: alpha(opacity=0);
 }
 
-
+.fa-circle-info{
+  float:left !important;
+}
 
 

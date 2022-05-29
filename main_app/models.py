@@ -119,7 +119,7 @@ class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings')
     
     def __str__(self):
-        return f"{self.date} -- {self.customer_name} at {self.location}"
+        return f"{self.customer_name} Booked on {self.date} at {self.location}"
 
     class Meta:
         ordering = ['-date']
