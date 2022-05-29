@@ -2,29 +2,38 @@
 {% block content %}
 
 <h1>Booking Detail</h1>
-    <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ booking.name }}</span>
-            {% if booking.date < today %}
-                <h4 style='color:red'> This Booking has Expired </h4>
-            {% endif %}
-            <p>Date: {{ booking.date }}</p>
-            <p>Location: {{ booking.location }}</p>
-            <p>Cusotmer Name: {{ booking.customer_name }}</p>
-            <p>Phone Number: {{ booking.phone_number }}</p>
-            <p>Comments: {{ booking.comment }}</p>
-            {% if no_transaction == False %}
-                <a href="{% url 'transaction_create' booking.id %}">Add Transaction</a>
-            {% else %}
-                <p>Transaction: ${{ booking.transaction.amount }} <a href="{% url 'transaction_update' booking.transaction.id %}">Update Transaction</a>
-                    <a href="{% url 'transaction_delete' booking.transaction.id %}">Delete Transaction</a></p>
-            {% endif %}
-            
+<hr/>
+    <div class="container mt-5 mb-5">
+        <div class="d-flex row">
+            <div class="col">
+                <div class="row p-2 detail-card">
+                    <div class="col-md-3 mt-1 time"><i class="far fa-calendar-alt" style="font-size:6vw"></i>{{ booking.date }}
+                    </div>
+                    <div class="col-md-6 mt-1">
+                            {% if booking.date < today %}
+                                <h4 class="expired-booking"> This Booking has Expired </h4>
+                            {% endif %}
+                        <div class="d-flex flex-row">
+                            <div class="customer-name mr-2"> <i class="far fa-user-circle" style='font-size:24px'></i>&nbsp;&nbsp;Customer Name: {{ booking.customer_name }}</div>
+                        </div>
+                        <div class="mt-1 mb-1 spec-1"><i class="far fa-comment-alt" style='font-size:24px'></i>&nbsp;&nbsp;Comments: {{ booking.comment }}</div>
+                        <p class="text-justify para mb-0"><span class="fa fa-phone" style='font-size:24px'></span>&nbsp;&nbsp;Phone Number: {{ booking.phone_number }}</p><p><span class="fa fa-globe" style='font-size:24px'></span>&nbsp;&nbsp;Location: {{ booking.location }} </p>
+                    </div>
+                    
+                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                        {% if no_transaction == False %}
+                        <a href="{% url 'transaction_create' booking.id %}" class="btn btn-primary btn-sm mt-2">Add Transaction</a>
+                        {% else %}
+                            <p>Transaction: ${{ booking.transaction.amount }}</p> <a href="{% url 'transaction_update' booking.transaction.id %}" class="btn btn-primary btn-sm mt-2 update-delete-trans">Update Transaction <i class='far fa-edit' style='font-size:24px'></i></a>
+                                <a href="{% url 'transaction_delete' booking.transaction.id %}" class="btn btn-outline-dark btn-sm mt-2 update-delete-trans">Delete Transaction <i class='far fa-trash-alt' style='font-size:24px'></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
-        <a href="{% url 'booking_update' booking.id %}" >Update Booking</a>
-        <a href="{% url 'booking_delete' booking.id %}" >Delete Booking</a>
     </div>
-</a>
-
+<hr/>
+    <a href="{% url 'booking_update' booking.id %}" class="btn update-booking">Update Booking <i class='far fa-edit' style='font-size:24px'></i></a>
+    <a href="{% url 'booking_delete' booking.id %}" class="btn delete-booking">Delete Booking <i class='far fa-trash-alt' style='font-size:24px'></i></a>
 
 {% endblock %}

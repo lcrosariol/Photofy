@@ -4,37 +4,54 @@
     <div class="row justify-content-around">
 
         <div class="col-4">
-            <h1>My Equipment</h1>
-            {% if assoc_equipments.count %}
-                {% for assoc_equipment in assoc_equipments %}
-                    <div> 
-                        <form action="{% url 'unassoc_equipment' assoc_equipment.id %}" method="post">
-                            {% csrf_token %}
-                            <a href="{% url 'unassoc_equipment' assoc_equipment.id %}" class="list-group-item list-group-item-action list-group-item">{{ assoc_equipment.get_type_display }} {{ assoc_equipment.model }}</a>
-                        </form>
+            <div class="col grid-margin stretch-card">
+                <div class="card" id="booking-card">
+                    <div class="card-body">
+                        <h1>My Equipment</h1>
+                        <hr>
+                        {% if assoc_equipments.count %}
+                            {% for assoc_equipment in assoc_equipments %}
+                                <div> 
+                                    <form action="{% url 'unassoc_equipment' assoc_equipment.id %}" method="post">
+                                        {% csrf_token %}
+                                        <a href="{% url 'unassoc_equipment' assoc_equipment.id %}" class="list-group-item list-group-item-action my-equip-btn">{{ assoc_equipment.get_type_display }} {{ assoc_equipment.model }} 	<i class="fa fa-close" style="float: right"></i></a>
+                                    </form>
+                                </div>
+                                <br>
+                            {% endfor %}
+                        {% else %}
+                            <h5>You don't have any equipment!</a></h5>
+                        {% endif %}
                     </div>
-                {% endfor %}
-            {% else %}
-                <h5>You don't have any equipment!</a></h5>
-            {% endif %}
+                </div>
+            </div>
         </div>
 
         <div class="col-4">
-            <h1>Available Equipment</h1>
-            <div class="col-6">
-                <a href="{% url 'equipment_create' %}"><i class="fas fa-circle-plus"></i>Add Equipment</a>
-            </div>
-            {% if equipments.count %}
-            <p>Click to add to your equipment list</p>
-                {% for equipment in equipments %}
-                    <div>
-                        <form action="{% url 'assoc_equipment' equipment.id %}" method="post">
-                            {% csrf_token %}
-                            <button class="list-group-item list-group-item-action"> Add {{ equipment.get_type_display}} {{ equipment.model }} to your equipment. </button>
-                        </form>
+            <div class="col grid-margin stretch-card">
+                <div class="card" id="equip-card">
+                    <div class="card-body">
+                        <h1>Available Equipment</h1>
+                        <hr>
+                        <div class="col-6">
+                            <a href="{% url 'equipment_create' %}" class="btn btn-primary" ><i class="fas fa-circle-plus"></i> Add Equipment</a>
+                        </div>
+                        <br>
+                        {% if equipments.count %}
+                        <p>Click to add to your equipment list</p>
+                            {% for equipment in equipments %}
+                                <div>
+                                    <form action="{% url 'assoc_equipment' equipment.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button class="list-group-item list-group-item-action add-equip-btn"> Add {{ equipment.get_type_display}} {{ equipment.model }} to your equipment. <i class="fas fa-circle-plus" style="float: right"></i> </button>
+                                    </form>
+                                </div>
+                                <br>
+                            {% endfor %}
+                        {% endif %}
                     </div>
-                {% endfor %}
-            {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
