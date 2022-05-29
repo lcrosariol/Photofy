@@ -239,7 +239,6 @@ def transactions(request):
     return render(request, 'transactions.html', {'transaction': transaction, 'transaction_total': transaction_total})
 
 
-
 @login_required
 def profile(request):
     """
@@ -312,7 +311,6 @@ class BookingCreate(LoginRequiredMixin, CreateView):
 class BookingUpdate(LoginRequiredMixin, UpdateView):
     model = Booking
     fields = ['date', 'location', 'customer_name', 'phone_number', 'comment']
-
 
 class BookingDelete(LoginRequiredMixin, DeleteView):
     model = Booking
