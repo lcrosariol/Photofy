@@ -115,15 +115,13 @@ main {
 
 #transaction-table, #booking-table{
   background-color: rgba(221, 221, 221, 0.717);
-  box-shadow: 12px 4px 10px
-  #1d1d1d;
+  box-shadow: 4px 5px 9px #1d1d1d;
   border-radius: 5px;
 }
 .btn-warning, .btn-primary{
   background-color: rgba(255, 180, 95, 0.512);
   border-color: rgba(255, 180, 95, 0.512);
-  box-shadow: 12px 4px 10px
-  #1d1d1d;
+  box-shadow: 4px 5px 9px #1d1d1d;
   color: #1d1d1d;
 }
 .btn-primary:hover{
@@ -135,13 +133,11 @@ main {
 }
 .booking-button, .update-booking{
   background-color: rgba(255, 180, 95, 0.512);
-  box-shadow: 12px 4px 10px
-  #1d1d1d;
+  box-shadow:4px 5px 9px #1d1d1d;
   width:100% !important;
 }
 .delete-booking{
-  box-shadow: 12px 4px 10px
-  #1d1d1d;
+  box-shadow: 4px 5px 9px #1d1d1d;
   width:100% !important;
   background-color: rgba(221, 221, 221, 0.717);
   border-color: #1d1d1d;
@@ -149,8 +145,7 @@ main {
 }
 .ex-booking-button{
   background-color: #1d1d1d36;
-  box-shadow: 12px 4px 10px
-  #1d1d1d;
+  box-shadow: 4px 5px 9px #1d1d1d;
   width:100% !important;
 }
 .transaction-icon, .booking-icon{
@@ -162,8 +157,7 @@ main {
 .add-equip-btn{
   background-color: rgba(255, 180, 95, 0.512);
   color: #1d1d1d;
-  box-shadow: 12px 4px 10px
-  #1d1d1d;
+  box-shadow: 4px 5px 9px #1d1d1d;
   border-radius: 5px;
 }
 .add-equip-btn:hover{
@@ -173,8 +167,7 @@ main {
 .my-equip-btn{
   background-color: rgba(228, 147, 56, 0.861);
   color: #1d1d1d;
-  box-shadow: 12px 4px 10px
-  #1d1d1d;
+  box-shadow:4px 5px 9px #1d1d1d;
   border-radius: 5px;
 }
 .my-equip-btn:hover{
@@ -197,16 +190,15 @@ main {
 .detail-card{
   background-color: rgba(85, 85, 85, 0.528);
   border-radius: 5px;
-  box-shadow: 12px 4px 10px
-  #1d1d1d;
+  box-shadow: 4px 5px 9px #1d1d1d;
 }
 .expired-booking{
-  color: #555;
+  color:  #e30000;
   text-transform: uppercase;
+  text-shadow:-1px -1px 1px rgb(255 255 255 / 40%), 1px 1px 1px rgb(0 0 0 / 70%)
 }
 .btn-outline-dark{
-  box-shadow: 12px 4px 10px
-  #1d1d1d;
+  box-shadow: 4px 5px 9px #1d1d1d;
   background-color: rgba(221, 221, 221, 0.717);
 }
 #container-main > div > div > div > div > div.col-md-6.mt-1{
@@ -271,8 +263,7 @@ main {
     margin-top: 10px;
     float: right;
     background-color:rgb(255, 181, 95)!important;
-    box-shadow: 12px 4px 10px
-  #1d1d1d;
+    box-shadow: 4px 5px 9px #1d1d1d;
 }
 
 .paginator-wrapper{
@@ -299,6 +290,14 @@ main {
 
 .fa-circle-info{
   float:left !important;
+  text-shadow:-1px -1px 1px rgb(255 255 255 / 40%), 1px 1px 1px rgb(0 0 0 / 70%)
 }
 
+.fa-edit,.fa-trash-alt {
+  text-shadow:-1px -1px 1px rgb(255 255 255 / 40%), 1px 1px 1px rgb(0 0 0 / 70%)
 
+}
+
+.fa-trash-alt{
+  color: #e30000;
+}
