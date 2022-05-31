@@ -171,7 +171,7 @@ def portfolio(request, profile_id):
     photos = Photo.objects.filter(user=profile_id).order_by('-created_at')
     
     page = request.GET.get('page', 1)
-    paginator = Paginator(photos, 3)
+    paginator = Paginator(photos, 6)
     try:
         photos = paginator.page(page)
     except PageNotAnInteger:
@@ -302,7 +302,6 @@ class BookingCreate(LoginRequiredMixin, CreateView):
     # take user field out because it is being attached when they click on the form (lines 176-178)
     fields = ['date', 'location', 'customer_name', 'phone_number', 'comment']
     success_url = '/bookings/'
-
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)

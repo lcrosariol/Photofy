@@ -31,15 +31,25 @@
 <div class="row">
 {% for photo in photos %}
       <div class="col-md-4">
-        <div class="thumbnail">
-            <img src="{{ photo.url }}" alt="Lights" class="initial-class" style="width:100%; margin:15px; border-radius:10px" onclick="enlargeImg(this)">
-        </div>
+        <div class="thumbnail pop">
+          <img src="{{ photo.url }}" alt="Lights" class="initial-class" style="width:100%; margin:15px; border-radius:10px" >
+      </div>
       </div>
 
     {% empty %}
       <div class="card-panel teal-text center-align">No Photos Uploaded</div>
     {% endfor %}
     </div>
+
+  <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">              
+        <div class="modal-body">
+          <img src="" class="imagepreview" style="width: 100%;">
+        </div>
+      </div>
+    </div>
+  </div>
 
 <div class='paginator-wrapper'>
     {% if photos.has_other_pages %}
@@ -63,31 +73,22 @@
       {% endif %}
     </ul>
   {% endif %}
-
   </div>
 
-
-
-
     <script>
-      // Function to enlarge image size
-      function enlargeImg(img) {
-        if (img.classList.contains('initial-class')) {
-          img.classList.remove("initial-class");
-          img.classList.add("enlarge-class");
-          clickCheck = false;
-        }
-        else {
-          img.classList.add("initial-class");
-          img.classList.remove("enlarge-class");
-          clickCheck = true;
-        }
-      }
+      $(document).ready(function(){
+      $(function() {
+        $('.pop').on('click', function() {
+          $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+          console.log($('#imagemodal'))
+          $('#imagemodal').modal('show');   
+        });		
+    });
+
+      $(".imagepreview").on('click', function() {
+        $('#imagemodal').modal('hide'); 
+      })
+  });
   </script>
   
-
-
-
-
-
 {% endblock %}
