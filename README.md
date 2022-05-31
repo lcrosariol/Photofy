@@ -22,8 +22,6 @@
     <a href="https://photofyproject.herokuapp.com/"><h1>View Live App »</h1></a>
     <br />
     <br />
-    <!-- <a href="https://github.com/othneildrew/Best-README-Template">View Site</a>
-    · -->
     <a href="https://github.com/users/lcrosariol/projects/2">Github Project Board</a>
     ·
     <a href="https://docs.google.com/presentation/d/1DKjHvccZqNiwuYVTtwiqE3vCKofOQT7Wz5ZywFELVrc/edit?usp=sharing">Pitch Deck</a>
