@@ -30,22 +30,37 @@
   </p>
 </div>
    <br />
-   <p align="center"> <strong>Portfolio Screen</strong> </p>
+   <p align="center"> <strong>Portfolio Page</strong> </p>
     <br />
 
 ![PhotographersScreen](images/screen1.png)
 
-   <p align="center"> <strong>Photographers Screen</strong> </p>
+   <p align="center"> <strong>All Bookings Page</strong> </p>
    <br />
 
-![BookingScreen](images/screen2.png)
+![BookingScreen](images/screen4.png)
 
-   <p align="center"><strong> Booking Screen </strong> </p>
+
+   <p align="center"><strong> Booking Page </strong> </p>
    <br />
 
 ![PortfolioScreen](images/screen3.png)
 
 <br />
+
+
+   <p align="center"> <strong>Transactions Page</strong> </p>
+   <br />
+
+![BookingScreen](images/screen5.png)
+<br />
+
+   <p align="center"> <strong>Photographers Page</strong> </p>
+   <br />
+
+![BookingScreen](images/screen2.png)
+<br />
+
 
 ## Technologies Used
 Project is created with:
