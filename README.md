@@ -1,13 +1,5 @@
 <div id="top"></div>
 
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -22,12 +14,12 @@
     <img src="images/canon.png" alt="Logo" width="100" height="80">
   </a>
 
-  <h3 align="center">Photofy </h3>
+  <h1 align="center">Photofy </h1>
 
   <p align="center">
-    An application for photographers and customers.
+    <h3>An application for photographers and customers.</h3>
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>View site »</strong></a>
+    <a href="https://photofyproject.herokuapp.com/"><h1><strong>View Live App »</strong></h1></a>
     <br />
     <br />
     <!-- <a href="https://github.com/othneildrew/Best-README-Template">View Site</a>
