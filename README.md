@@ -59,8 +59,10 @@
 Project is created with:
 * Python
 * Django
+* Crispy Forms
+* Django Paginator
 * PostgreSQL
-* Amazon Web Services S3
+* Amazon Web Services S3 Bucket
 * Heroku
 
 
