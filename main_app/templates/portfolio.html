@@ -45,7 +45,7 @@
     <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content">              
         <div class="modal-body">
-          <img src="" class="imagepreview" style="width: 100%;" >
+          <img src="" class="imagepreview" style="width: 100%;">
         </div>
       </div>
     </div>
@@ -84,6 +84,10 @@
           $('#imagemodal').modal('show');   
         });		
     });
+
+      $(".imagepreview").on('click', function() {
+        $('#imagemodal').modal('hide'); 
+      })
   });
   </script>
   
