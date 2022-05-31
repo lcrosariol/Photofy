@@ -302,7 +302,6 @@ class BookingCreate(LoginRequiredMixin, CreateView):
     # take user field out because it is being attached when they click on the form (lines 176-178)
     fields = ['date', 'location', 'customer_name', 'phone_number', 'comment']
     success_url = '/bookings/'
-
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
