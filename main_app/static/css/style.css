@@ -301,3 +301,7 @@ main {
 .fa-trash-alt{
   color: #e30000;
 }
+
+.thumbnail {
+  cursor: pointer;
+}

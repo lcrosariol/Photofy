@@ -171,7 +171,7 @@ def portfolio(request, profile_id):
     photos = Photo.objects.filter(user=profile_id).order_by('-created_at')
     
     page = request.GET.get('page', 1)
-    paginator = Paginator(photos, 3)
+    paginator = Paginator(photos, 6)
     try:
         photos = paginator.page(page)
     except PageNotAnInteger:
