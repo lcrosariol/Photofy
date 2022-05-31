@@ -19,7 +19,7 @@
   <p align="center">
     <h3>An application for photographers and customers.</h3>
     <br />
-    <a href="https://photofyproject.herokuapp.com/"><h1><strong>View Live App »</strong></h1></a>
+    <a href="https://photofyproject.herokuapp.com/"><h1>View Live App »</h1></a>
     <br />
     <br />
     <!-- <a href="https://github.com/othneildrew/Best-README-Template">View Site</a>
