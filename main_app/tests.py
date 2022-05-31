@@ -15,7 +15,6 @@ class BookingTestCase(TestCase):
         bookingDict = {
             "date": date.today(),
             "location": "Sacramento",
-            "paid": False,
             "customer_name": "John Appleseed",
             "phone_number": "9164794366",
             "comment": "Test comment",
@@ -25,7 +24,6 @@ class BookingTestCase(TestCase):
         Booking.objects.create(
             date=bookingDict["date"],
             location=bookingDict["location"],
-            paid=bookingDict["paid"],
             customer_name=bookingDict["customer_name"],
             phone_number=bookingDict["phone_number"],
             comment=bookingDict["comment"],
@@ -36,7 +34,6 @@ class BookingTestCase(TestCase):
         print("This is user:", user1)
         print("These are the bookings", bookings)
         listsBookings = list(bookings)
-        print(listsBookings[0].paid)
         
     def test_check_user_values(self):
         user = User.objects.create(username='test2', password='12345test')
@@ -73,7 +70,6 @@ class TransactionTestCase(TestCase):
         bookingDict = {
             "date": date.today(),
             "location": "Sacramento",
-            "paid": False,
             "customer_name": "John Appleseed",
             "phone_number": "9164794366",
             "comment": "Test comment",
@@ -82,7 +78,6 @@ class TransactionTestCase(TestCase):
         booking = Booking.objects.create(
             date=bookingDict["date"],
             location=bookingDict["location"],
-            paid=bookingDict["paid"],
             customer_name=bookingDict["customer_name"],
             phone_number=bookingDict["phone_number"],
             comment=bookingDict["comment"],
@@ -90,7 +85,7 @@ class TransactionTestCase(TestCase):
             )
         print("Booking: ", booking)
 
-        transaction = Transaction.objects.create(payment_method='Z', amount=500, date=date.today(), booking=booking)
+        transaction = Transaction.objects.create(payment_method='Z', amount=500, date=date.today(), booking=booking, paid=True)
         print("Transaction: ", transaction)
 
     def test_checkTransactions(self):
@@ -99,6 +94,7 @@ class TransactionTestCase(TestCase):
         self.assertEqual(listTransactions[0].amount, 500)
         self.assertEqual(listTransactions[0].payment_method, 'Z')
         self.assertEqual(listTransactions[0].booking.location, 'Sacramento')
+        self.assertEqual(listTransactions[0].paid, True)
 
 
 
@@ -125,7 +121,6 @@ class URLSTestCase(TestCase):
         bookingDict = {
             "date": date.today(),
             "location": "Sacramento",
-            "paid": False,
             "customer_name": "John Appleseed",
             "phone_number": "9164794366",
             "comment": "Test comment",
@@ -134,24 +129,11 @@ class URLSTestCase(TestCase):
         booking = Booking.objects.create(
             date=bookingDict["date"],
             location=bookingDict["location"],
-            paid=bookingDict["paid"],
             customer_name=bookingDict["customer_name"],
             phone_number=bookingDict["phone_number"],
             comment=bookingDict["comment"],
             user=bookingDict["user"]
             )
-    
-    def test_home(self):
-        url = reverse('home')
-        response = self.client.get(url)
-        self.assertTemplateUsed = 'home.html'
-        self.assertEqual(response.status_code, 200)
-    
-    def test_about(self):
-        url = reverse('about')
-        response = self.client.get(url)
-        self.assertTemplateUsed = 'about.html'
-        self.assertEqual(response.status_code, 200)
     
     def test_booking(self):
         bookings = Booking.objects.all()
@@ -171,7 +153,8 @@ class URLSTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_portfolio(self):
-        url = reverse('portfolio')
+        user = User.objects.get(username="test5")
+        url = reverse('portfolio', args=(user.pk,))
         response = self.client.get(url)
         self.assertTemplateUsed = 'portfolio.html'
         self.assertEqual(response.status_code, 200)
@@ -183,7 +166,8 @@ class URLSTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
     
     def test_profile(self):
-        url = reverse('profile')
+        user = User.objects.get(username='test5')
+        url = reverse('profile', args=(user.pk,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
@@ -198,15 +182,22 @@ class URLSTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
     
     def test_create_transaction(self):
-        url = reverse('transaction_create')
+        bookings = Booking.objects.all()
+        listBookings = list(bookings)
+        firstBooking = listBookings[0]
+        url = reverse('transaction_create', args=(firstBooking.pk,))
+        print("URL Booking: ", url)
         response = self.client.get(url)
+        self.assertTemplateUsed = 'bookings/booking_detail.html'
+        self.assertContains(response, firstBooking.id)
         self.assertEqual(response.status_code, 200)
     
     def test_add_photo(self):
         user = User.objects.get(username='test5')
-        url = reverse('add_photo', args=(user.pk,))
+        print("This is the User ID dir:", dir(user.id))
+        url = reverse('add_photo', args=(user.id,))
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, f'/portfolio/{user.id}')
 
     
 class TransactionFormTestCase(TestCase):
@@ -215,7 +206,6 @@ class TransactionFormTestCase(TestCase):
         booking = Booking.objects.create(
             date=date.today(),
             location="San Diego",
-            paid=False,
             customer_name="Tim Jones",
             phone_number="9168765432",
             comment="Comment Test",
@@ -223,7 +213,7 @@ class TransactionFormTestCase(TestCase):
             )
         print("Booking: ", booking)
 
-        transaction = Transaction.objects.create(payment_method='Z', amount=500, date=date.today(), booking=booking)
+        transaction = Transaction.objects.create(payment_method='Z', amount=500, date=date.today(), booking=booking, paid=False)
         data = model_to_dict(transaction)
         response = self.client.post("/transaction/create", data=data)
         self.assertEqual(Transaction.objects.count(), 1)
@@ -231,25 +221,10 @@ class TransactionFormTestCase(TestCase):
 
 class TestRedirectNonUser(TestCase):
 
-    def test_home_redirect_nonuser(self):
-        url = reverse('home')
-        response = self.client.get(url)
-        self.assertRedirects(response, "/accounts/login/?next=/")
-    
-    def test_about_redirect_nonuser(self):
-        url = reverse('about')
-        response = self.client.get(url)
-        self.assertRedirects(response, "/accounts/login/?next=/about/")
-
     def test_equipment_redirect_nonuser(self):
         url = reverse('equipment')
         response = self.client.get(url)
         self.assertRedirects(response, "/accounts/login/?next=/equipment/")
-    
-    def test_portfolio_redirect_nonuser(self):
-        url = reverse('portfolio')
-        response = self.client.get(url)
-        self.assertRedirects(response, "/accounts/login/?next=/portfolio/")
 
     def test_bookings_redirect_nonuser(self):
         url = reverse('bookings')
@@ -260,8 +235,3 @@ class TestRedirectNonUser(TestCase):
         url = reverse('transactions')
         response = self.client.get(url)
         self.assertRedirects(response, "/accounts/login/?next=/transactions/")
-    
-    def test_portfolio_redirect_nonuser(self):
-        url = reverse('portfolio')
-        response = self.client.get(url)
-        self.assertRedirects(response, "/accounts/login/?next=/portfolio/")

@@ -27,7 +27,7 @@
   <p align="center">
     An application for photographers and customers.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>View site »</strong></a>
+    <a href="https://photofyproject.herokuapp.com/"><strong>View site »</strong></a>
     <br />
     <br />
     <!-- <a href="https://github.com/othneildrew/Best-README-Template">View Site</a>
