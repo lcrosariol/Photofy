@@ -29,6 +29,7 @@
     <a href="https://docs.google.com/presentation/d/1DKjHvccZqNiwuYVTtwiqE3vCKofOQT7Wz5ZywFELVrc/edit?usp=sharing">Pitch Deck</a>
   </p>
 </div>
+# <p align="center" style="font-weight:700;"> [Play Battleship Game](https://battle-ships2.netlify.app) </p>
    <br />
    <p align="center"> <strong>Portfolio Page</strong> </p>
     <br />
