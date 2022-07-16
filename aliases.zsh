@@ -1,8 +1,19 @@
 # run "source aliases.zsh" command first
-alias env="source ../env/bin/activate"
+# alias env="source ../env/bin/activate"
+# alias denv="deactivate"
+# alias mmg="python manage.py makemigrations main_app"
+# alias mg="python manage.py migrate"
+# alias install="pip3 install -r requirements.txt"
+# alias run="python3 manage.py runserver"
+# alias suser="python3 manage.py createsuperuser"
+
+
+# Windows
+# run "source aliases.zsh" command first
+alias env="source ../env/Scripts/activate"
 alias denv="deactivate"
 alias mmg="python manage.py makemigrations main_app"
 alias mg="python manage.py migrate"
-alias install="pip3 install -r requirements.txt"
-alias run="python3 manage.py runserver"
-alias suser="python3 manage.py createsuperuser"
+alias install="pip install -r requirements.txt"
+alias run="python manage.py runserver"
+alias suser="python manage.py createsuperuser"
